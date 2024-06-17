@@ -1,14 +1,14 @@
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {MaterialBottomTabNavigationProp} from 'react-native-paper';
+import { CompositeNavigationProp, NavigatorScreenParams } from '@react-navigation/native';
 
 export type RootStackParamList = {
-  Main: undefined;
+  Main: NavigatorScreenParams<TabParamList>;
   'Product detail': {id: number | null};
 };
 
 export type TabParamList = {
   Home: undefined;
-  User: UserStackParamList;
+  User:   NavigatorScreenParams<UserStackParamList>;
   Add: {id: number | null};
   Cart: undefined;
 };
@@ -18,14 +18,23 @@ export type UserStackParamList = {
   Signup: undefined;
 };
 
-export type MainScreenNavigationProp =
-  NativeStackNavigationProp<RootStackParamList>;
+declare global {
+  namespace ReactNavigation {
+    interface RootParamList extends RootStackParamList {}
+  }
+}
 
-export type ProductDetailScreenNavigationProp =
-  NativeStackNavigationProp<RootStackParamList>;
+export type TabScreenNavigationProp = CompositeNavigationProp<
+NativeStackNavigationProp<TabParamList>,
+NativeStackNavigationProp<RootStackParamList>
+>
 
-export type TabScreenNavigationProp =
-  MaterialBottomTabNavigationProp<TabParamList>;
+export  type UserScreenNavigationProp = CompositeNavigationProp<
+NativeStackNavigationProp<UserStackParamList>,
+CompositeNavigationProp<
+NativeStackNavigationProp<TabParamList>,
+NativeStackNavigationProp<RootStackParamList>
+>
+>
 
-export type UserScreenNavigationProp =
-  NativeStackNavigationProp<UserStackParamList>;
+export type RootScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>

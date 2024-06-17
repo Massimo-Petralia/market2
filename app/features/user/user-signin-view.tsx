@@ -3,7 +3,6 @@ import {Text} from 'react-native-paper';
 import {Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import {UserScreenNavigationProp} from '../../navigation/navigation-types';
-
 export const UserSigninView = () => {
   const navigation = useNavigation<UserScreenNavigationProp>();
   return (

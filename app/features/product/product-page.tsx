@@ -2,7 +2,7 @@ import {View} from 'react-native';
 import {ProductView} from './product-view';
 import {Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
-import {TabScreenNavigationProp} from '../../navigation/navigation-types';
+import { TabScreenNavigationProp, UserScreenNavigationProp } from '../../navigation/navigation-types';
 
 export const ProductPage = () => {
   const navigation = useNavigation<TabScreenNavigationProp>();
