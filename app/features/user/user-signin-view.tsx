@@ -8,7 +8,7 @@ export const UserSigninView = () => {
   const navigation = useNavigation<UserScreenNavigationProp>();
   return (
     <View>
-      <Text>user signin view work !</Text>
+      <Text>user signin work !</Text>
       <Button
         mode="contained"
         rippleColor="green"

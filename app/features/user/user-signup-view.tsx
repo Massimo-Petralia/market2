@@ -9,7 +9,7 @@ export const UserSignupView = ()=> {
     const navigation = useNavigation<UserScreenNavigationProp>()
     return (
         <View>
-            <Text>user signup view work !</Text>
+            <Text>user signup work !</Text>
             <Button
         mode="contained"
         rippleColor="green"
