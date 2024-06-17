@@ -1,53 +1,31 @@
-import { NativeStackNavigationProp } from "@react-navigation/native-stack";
-import { MaterialBottomTabNavigationProp } from "react-native-paper";
+import {NativeStackNavigationProp} from '@react-navigation/native-stack';
+import {MaterialBottomTabNavigationProp} from 'react-native-paper';
 
 export type RootStackParamList = {
-    Main: undefined;
-    "Product detail": {id: number | null}
-}
+  Main: undefined;
+  'Product detail': {id: number | null};
+};
 
 export type TabParamList = {
-    Home: undefined;
-    User: undefined;
-    Add: {id: number | null};
-    Cart: undefined //parametro provvisorio
-}
+  Home: undefined;
+  User: UserStackParamList;
+  Add: {id: number | null};
+  Cart: undefined;
+};
 
 export type UserStackParamList = {
-    Signin: undefined;
-    Signup: undefined
-}
+  Signin: undefined;
+  Signup: undefined;
+};
 
-export type MainScreenNavigationProp = NativeStackNavigationProp<
-RootStackParamList, 'Main'>
+export type MainScreenNavigationProp =
+  NativeStackNavigationProp<RootStackParamList>;
 
-export type ProductDetailScreenNavigationProp = NativeStackNavigationProp<
-RootStackParamList, 'Product detail'
->
+export type ProductDetailScreenNavigationProp =
+  NativeStackNavigationProp<RootStackParamList>;
 
-export type HomeScreenTabNavigationProp = MaterialBottomTabNavigationProp<
-TabParamList, 'Home'
->
+export type TabScreenNavigationProp =
+  MaterialBottomTabNavigationProp<TabParamList>;
 
-export type UserScreenTabNavigationProp = MaterialBottomTabNavigationProp<
-TabParamList, 'User'
->
-
-export type AddScreenTabNavigationProp = MaterialBottomTabNavigationProp<
-TabParamList, 'Add'
->
-
-export type CartScreenTabNavigationProp = MaterialBottomTabNavigationProp<
-TabParamList, 'Cart'
->
-
-export type SigninScreenNavigationProp = NativeStackNavigationProp<
-UserStackParamList, 'Signin'
->
-
-export type SignupScreenNavigationProp = NativeStackNavigationProp<
-UserStackParamList, 'Signup'
->
-
-
-
+export type UserScreenNavigationProp =
+  NativeStackNavigationProp<UserStackParamList>;
