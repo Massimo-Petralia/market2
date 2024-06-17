@@ -1,4 +1,4 @@
-import { createMaterialBottomTabNavigator } from "react-native-paper/lib/typescript/react-navigation";
+import { createMaterialBottomTabNavigator } from "react-native-paper/react-navigation";
 
 import { ProductsListPage } from "../features/products-list/products-list-page";
 import { UserNavigator } from "./user-navigation";
@@ -10,7 +10,7 @@ const Tab = createMaterialBottomTabNavigator<TabParamList>()
 
 export const MainTabNavigator = () => {
     return (
-        <Tab.Navigator>
+        <Tab.Navigator initialRouteName="Home">
             <Tab.Screen  name="Home" component={ProductsListPage}/>
             <Tab.Screen name="User" component={UserNavigator}/>
             <Tab.Screen name="Add" component={ProductPage}/>

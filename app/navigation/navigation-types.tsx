@@ -1,5 +1,6 @@
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { MaterialBottomTabNavigationProp } from "react-native-paper";
+
 export type RootStackParamList = {
     Main: undefined;
     "Product detail": {id: number | null}
