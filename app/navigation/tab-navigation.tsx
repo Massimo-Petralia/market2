@@ -4,8 +4,9 @@ import { ProductsListPage } from "../features/products-list/products-list-page";
 import { UserNavigator } from "./user-navigation";
 import { ProductPage } from "../features/product/product-page";
 import { CartPage } from "../features/cart/cart-page";
+import { TabParamList } from "./navigation-types";
 
-const Tab = createMaterialBottomTabNavigator()
+const Tab = createMaterialBottomTabNavigator<TabParamList>()
 
 export const MainTabNavigator = () => {
     return (

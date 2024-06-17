@@ -1,8 +1,9 @@
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { MainTabNavigator } from "./tab-navigation";
 import { ProductPage } from "../features/product/product-page";
+import { RootStackParamList } from "./navigation-types";
 
-const RootStack = createNativeStackNavigator()
+const RootStack = createNativeStackNavigator<RootStackParamList>()
 
 export const RootNavigator = () => {
     return (
