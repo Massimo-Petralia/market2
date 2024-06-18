@@ -1,21 +1,24 @@
-import { View } from "react-native"
-import { Text } from "react-native-paper"
-import { Button } from "react-native-paper"
-import { useNavigation } from "@react-navigation/native"
-import { UserScreenNavigationProp } from "../../navigation/navigation-types"
+import {View} from 'react-native';
+import {Text} from 'react-native-paper';
+import {Button} from 'react-native-paper';
+import {useNavigation} from '@react-navigation/native';
 
-
-export const UserSignupView = ()=> {
-    const navigation = useNavigation<UserScreenNavigationProp>()
-    return (
-        <View>
-            <Text>user signup work !</Text>
-            <Button
+export const UserSignupView = () => {
+  const navigation = useNavigation();
+  return (
+    <View>
+      <Text>user signup work !</Text>
+      <Button
         mode="contained"
         rippleColor="green"
-        onPress={() => navigation.navigate('Signin')}>
+        onPress={() =>
+          navigation.navigate('Main', {
+            screen: 'User',
+            params: {screen: 'Signin'},
+          })
+        }>
         go to signin
       </Button>
-        </View>
-    )
-}
+    </View>
+  );
+};

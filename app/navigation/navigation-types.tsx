@@ -1,5 +1,4 @@
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import { CompositeNavigationProp, NavigatorScreenParams } from '@react-navigation/native';
+import {NavigatorScreenParams} from '@react-navigation/native';
 
 export type RootStackParamList = {
   Main: NavigatorScreenParams<TabParamList>;
@@ -8,7 +7,7 @@ export type RootStackParamList = {
 
 export type TabParamList = {
   Home: undefined;
-  User:   NavigatorScreenParams<UserStackParamList>;
+  User: NavigatorScreenParams<UserStackParamList>;
   Add: {id: number | null};
   Cart: undefined;
 };
@@ -24,17 +23,6 @@ declare global {
   }
 }
 
-export type TabScreenNavigationProp = CompositeNavigationProp<
-NativeStackNavigationProp<TabParamList>,
-NativeStackNavigationProp<RootStackParamList>
->
-
-export  type UserScreenNavigationProp = CompositeNavigationProp<
-NativeStackNavigationProp<UserStackParamList>,
-CompositeNavigationProp<
-NativeStackNavigationProp<TabParamList>,
-NativeStackNavigationProp<RootStackParamList>
->
->
-
-export type RootScreenNavigationProp = NativeStackNavigationProp<RootStackParamList>
+// Navigation example
+// navigation.navigate('Main', { screen: 'User', params: { screen: 'Signin' } });
+// navigation.navigate('Main', { screen: 'User', params: { screen: 'Signup' } });
