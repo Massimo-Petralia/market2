@@ -2,11 +2,9 @@ import {View} from 'react-native';
 import {Text} from 'react-native-paper';
 import {Button} from 'react-native-paper';
 import { useNavigation } from '@react-navigation/native';
-import { ProductDetailScreenNavigationProp } from '../../navigation/navigation-types';
-
 
 export const ProductsListView = () => {
-    const navigation = useNavigation<ProductDetailScreenNavigationProp>()
+    const navigation = useNavigation()
   return (
     <View>
       <Text>product list View work !</Text>
