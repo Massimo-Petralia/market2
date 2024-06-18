@@ -5,16 +5,17 @@ import { UserNavigator } from "./user-navigation";
 import { ProductPage } from "../features/product/product-page";
 import { CartPage } from "../features/cart/cart-page";
 import { TabParamList } from "./navigation-types";
+import Routes from "./navigation-routes";
 
 const Tab = createMaterialBottomTabNavigator<TabParamList>()
 
 export const MainTabNavigator = () => {
     return (
-        <Tab.Navigator initialRouteName="Home">
-            <Tab.Screen  name="Home" component={ProductsListPage}/>
-            <Tab.Screen name="User" component={UserNavigator}/>
-            <Tab.Screen name="Add" component={ProductPage}/>
-            <Tab.Screen name="Cart" component={CartPage}/>
+        <Tab.Navigator initialRouteName={Routes.root.tab.home}>
+            <Tab.Screen  name={Routes.root.tab.home} component={ProductsListPage}/>
+            <Tab.Screen name={Routes.root.tab.user.index} component={UserNavigator}/>
+            <Tab.Screen name={Routes.root.tab.Add} component={ProductPage}/>
+            <Tab.Screen name={Routes.root.tab.cart} component={CartPage}/>
         </Tab.Navigator>
     )
 }

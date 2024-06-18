@@ -1,20 +1,21 @@
 import {NavigatorScreenParams} from '@react-navigation/native';
+import Routes from './navigation-routes';
 
 export type RootStackParamList = {
-  Main: NavigatorScreenParams<TabParamList>;
-  'Product detail': {id: number | null};
+  [Routes.root.main]: NavigatorScreenParams<TabParamList>;
+  [Routes.root.itemDetail]: {id: number | null};
 };
 
 export type TabParamList = {
-  Home: undefined;
-  User: NavigatorScreenParams<UserStackParamList>;
-  Add: {id: number | null};
-  Cart: undefined;
+  [Routes.root.tab.home]: undefined;
+  [Routes.root.tab.user.index]: NavigatorScreenParams<UserStackParamList>;
+  [Routes.root.tab.Add]: {id: number | null};
+  [Routes.root.tab.cart]: undefined;
 };
 
 export type UserStackParamList = {
-  Signin: undefined;
-  Signup: undefined;
+  [Routes.root.tab.user.signin]: undefined;
+  [Routes.root.tab.user.signup]: undefined;
 };
 
 declare global {
