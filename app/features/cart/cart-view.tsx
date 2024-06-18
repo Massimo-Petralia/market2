@@ -2,10 +2,10 @@ import { View } from "react-native"
 import { Text } from "react-native-paper"
 
 
-export const UserPage = ()=> {
+export const CartView = ()=> {
     return (
         <View>
-            <Text>------</Text>
+           <Text>cart view work !</Text>
         </View>
     )
 }
