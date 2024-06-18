@@ -1,9 +1,9 @@
 import { useState, createContext } from "react"
 import { MarketState, Product, UserData } from "../models/market-models"
 import { MarketContextType } from "./market-context-type"
-import { initialState } from "./market-context-type"
+import { initialState, defaultContext } from "./market-context-type"
 
-const MarketContext = createContext<MarketContextType>(null) 
+const MarketContext = createContext<MarketContextType>(defaultContext) 
 
 export const MarketProvider = ({children}:{children: React.ReactNode})=> {
 const [state, setState] = useState<MarketState>(initialState)

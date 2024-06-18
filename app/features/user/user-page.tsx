@@ -1,11 +1,9 @@
-import { View } from "react-native"
-import { Text } from "react-native-paper"
+import {UserNavigator} from '../../navigation/user-navigation';
 
-
-export const UserPage = ()=> {
-    return (
-        <View>
-            <Text>------</Text>
-        </View>
-    )
-}
+export const UserPage = () => {
+  return (
+    <>
+      <UserNavigator />
+    </>
+  );
+};
