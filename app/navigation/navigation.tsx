@@ -7,6 +7,7 @@ import Routes from './navigation-routes';
 
 import {  adaptNavigationTheme } from 'react-native-paper';
 const {DarkTheme} = adaptNavigationTheme({reactNavigationDark: DefaultTheme})
+const {LightTheme} = adaptNavigationTheme({reactNavigationLight: DefaultTheme})
 
 
 
@@ -15,7 +16,7 @@ const RootStack = createNativeStackNavigator<RootStackParamList>();
 export const RootNavigator = () => {
   return (
     
-    <NavigationContainer theme={DarkTheme}>
+    <NavigationContainer theme={LightTheme}>
       <RootStack.Navigator initialRouteName={Routes.root.main}>
         <RootStack.Screen
           name={Routes.root.main}
