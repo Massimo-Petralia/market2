@@ -8,9 +8,9 @@ import {adaptNavigationTheme} from 'react-native-paper';
 import {MarketContext} from '../context/market-context-provider';
 import {MarketContextType} from '../context/market-context-type';
 import {useContext} from 'react';
+import {CustomHeader} from '../components/custom-screen-header';
 const {DarkTheme} = adaptNavigationTheme({reactNavigationDark: DefaultTheme});
 const {LightTheme} = adaptNavigationTheme({reactNavigationLight: DefaultTheme});
-
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
@@ -21,7 +21,9 @@ export const RootNavigator = () => {
         <RootStack.Screen
           name={Routes.root.main}
           component={MainTabNavigator}
-          options={{headerShown: false}}
+          options={{
+            header: props => <CustomHeader {...props} />,
+          }}
         />
         <RootStack.Screen
           name={Routes.root.itemDetail}

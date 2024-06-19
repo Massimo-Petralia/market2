@@ -11,7 +11,6 @@ export const UserSignupView = () => {
       <Text>user signup work !</Text>
       <Button
         mode="contained"
-        rippleColor="green"
         onPress={() =>
           navigation.navigate(Routes.root.main, {
             screen: Routes.root.tab.user.index,

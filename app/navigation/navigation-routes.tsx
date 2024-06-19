@@ -1,6 +1,6 @@
 const Routes = {
   root: {
-    main: 'Main',
+    main: 'Market2',
     itemDetail: 'Product detail',
     tab : {
         home: 'Home',

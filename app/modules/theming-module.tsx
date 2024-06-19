@@ -38,7 +38,7 @@ export const ToggleLightDarkTheme = () => {
           onThemeToggle();
           setBottomNavColor(color);
         }}
-        size={26}
+        size={20}
       />
     </View>
   );
