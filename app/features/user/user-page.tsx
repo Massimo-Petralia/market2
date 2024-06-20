@@ -1,15 +1,10 @@
-import { User } from '../../models/market-models';
+import {User} from '../../models/market-models';
 import {UserNavigator} from '../../navigation/user-navigation';
 
-
-
 export const UserPage = () => {
+  const onSignup = (user: User) => {};
 
-  const onSignup = (user: User) => {}
+  const onSignin = () => {};
 
-  const onSignin = () => {}
-
-  return (
-      <UserNavigator />
-  );
+  return <UserNavigator />;
 };

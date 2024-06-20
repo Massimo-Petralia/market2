@@ -1,3 +1,5 @@
+import { MD3Theme } from 'react-native-paper';
+
 export interface User {
     id?: number;
     name: string;
@@ -23,6 +25,7 @@ export interface MarketState {
     products: Product[];
     product: Product;
     userData: UserData;
-    notification: string
+    notification: string;
+    isDarkTheme:boolean;
 }
 
