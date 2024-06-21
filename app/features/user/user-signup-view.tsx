@@ -2,16 +2,20 @@ import {View} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import Routes from '../../navigation/navigation-routes';
-import {useState} from 'react';
+import React, {useState, useContext} from 'react';
 import {User} from '../../models/market-models';
 import {DefaultUser} from '../../models/default-values';
+import {UserContext} from '../../context/user-context/user-context-provider';
+import {UserContextType} from '../../context/user-context/user-context-types';
+import { useFocusEffect } from '@react-navigation/native';
 
 export const UserSignupView = () => {
   const navigation = useNavigation();
-  const [formUser, setFormUser] = useState<User>(DefaultUser);
+  const useUser = useContext<UserContextType>(UserContext);
+  const [user, setUser] = useState<User>(DefaultUser);
 
   const updateSignupForm = (key: keyof User, value: string) => {
-    setFormUser(previousValue => ({...previousValue, [key]: value}));
+    setUser(previousValue => ({...previousValue, [key]: value}));
   };
 
   const handleNameChanges = (name: string) => {
@@ -25,24 +29,34 @@ export const UserSignupView = () => {
     updateSignupForm('password', password);
   };
 
+  useFocusEffect(
+    React.useCallback(()=>{
+      setUser(useUser.user)
+      console.log('log effect', user.name)
+    },[useUser.user])
+  )
+
   return (
     <View>
       <View id="signup-form">
         <TextInput
-          value={DefaultUser.name}
+          value={user.name}
           onChangeText={name => handleNameChanges(name)}
           label="Name"
         />
         <TextInput
-          value={DefaultUser.email}
+          value={user.email}
           onChangeText={email => handleEmailChanges(email)}
           label="E-mail"
         />
         <TextInput
-          value={DefaultUser.password}
+          value={user.password}
           onChangeText={password => handlePasswordChanges(password)}
           label="Password"
         />
+        <Button mode="contained" onPress={() => useUser.onSignup(user)}>
+          Signup
+        </Button>
       </View>
       <Button
         mode="contained"

@@ -5,9 +5,9 @@ import { useContext } from "react";
 import {View,Text} from "react-native"
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import Routes from "../navigation/navigation-routes";
-import { ToggleLightDarkTheme } from "../modules/theme-provider";
+import { ToggleLightDarkTheme } from "../theming/theme-manager";
 export const CustomHeader = (props: NativeStackHeaderProps) => {
-    const {state} = useContext<MarketContextType>(MarketContext);
+    const {marketState} = useContext<MarketContextType>(MarketContext);
   
     return (
       <View
@@ -16,13 +16,13 @@ export const CustomHeader = (props: NativeStackHeaderProps) => {
           justifyContent: 'space-between',
           alignItems: 'center',
           paddingHorizontal: 10,
-          backgroundColor: !state.isDarkTheme
+          backgroundColor: !marketState.isDarkTheme
             ? MD3LightTheme.colors.background
             : MD3DarkTheme.colors.background,
         }}>
         <Text
           style={{
-            color: !state.isDarkTheme
+            color: !marketState.isDarkTheme
               ? MD3LightTheme.colors.onBackground
               : MD3DarkTheme.colors.onBackground,
           }}>

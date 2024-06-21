@@ -14,9 +14,9 @@ const {LightTheme} = adaptNavigationTheme({reactNavigationLight: DefaultTheme});
 const RootStack = createNativeStackNavigator<RootStackParamList>();
 
 export const RootNavigator = () => {
-  const {state} = useContext<MarketContextType>(MarketContext);
+  const {marketState} = useContext<MarketContextType>(MarketContext);
   return (
-    <NavigationContainer theme={!state.isDarkTheme ? LightTheme : DarkTheme}>
+    <NavigationContainer theme={!marketState.isDarkTheme ? LightTheme : DarkTheme}>
       <RootStack.Navigator initialRouteName={Routes.root.main}>
         <RootStack.Screen
           name={Routes.root.main}
