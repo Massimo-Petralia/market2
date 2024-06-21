@@ -1,16 +1,18 @@
-import { MD3Theme } from 'react-native-paper';
-
 export interface User {
+    accessTokken?: string;
     id?: number;
     name: string;
     email: string;
     password: string
 }
 
-export type UserData = {
+
+export type UserDataResponse = {
     accessToken?: string;
     user: User
 }|null
+
+
 
 export type Product = {
     id?: number;
@@ -24,7 +26,7 @@ export type Product = {
 export interface MarketState {
     products: Product[];
     product: Product;
-    userData: UserData;
+    user: User;
     notification: string;
     isDarkTheme:boolean;
 }

@@ -1,11 +1,11 @@
 import { MD3LightTheme, MD3DarkTheme } from "react-native-paper";
-import { MarketContext } from "../context/market-context-provider";
-import { MarketContextType } from "../context/market-context-type";
+import { MarketContext } from "../context/market-context/market-context-provider";
+import { MarketContextType } from "../context/market-context/market-context-type";
 import { useContext } from "react";
 import {View,Text} from "react-native"
 import { NativeStackHeaderProps } from "@react-navigation/native-stack";
 import Routes from "../navigation/navigation-routes";
-import { ToggleLightDarkTheme } from "../modules/theming-module";
+import { ToggleLightDarkTheme } from "../modules/theme-provider";
 export const CustomHeader = (props: NativeStackHeaderProps) => {
     const {state} = useContext<MarketContextType>(MarketContext);
   
