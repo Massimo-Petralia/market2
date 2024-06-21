@@ -1,29 +1,46 @@
-import {useContext} from 'react';
 import {View} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import Routes from '../../navigation/navigation-routes';
-import {UserContext} from '../../context/user-context/user-context-provider';
+import {useState} from 'react';
+import {User} from '../../models/market-models';
+import {DefaultUser} from '../../models/default-values';
 
 export const UserSignupView = () => {
-  const context = useContext(UserContext);
   const navigation = useNavigation();
+  const [formUser, setFormUser] = useState<User>(DefaultUser);
+
+  const updateSignupForm = (key: keyof User, value: string) => {
+    setFormUser(previousValue => ({...previousValue, [key]: value}));
+  };
+
+  const handleNameChanges = (name: string) => {
+    updateSignupForm('name', name);
+  };
+  const handleEmailChanges = (email: string) => {
+    updateSignupForm('email', email);
+  };
+
+  const handlePasswordChanges = (password: string) => {
+    updateSignupForm('password', password);
+  };
+
   return (
     <View>
       <View id="signup-form">
         <TextInput
-          value={context.user.name}
-          onChangeText={name => context.updateName(name)}
+          value={DefaultUser.name}
+          onChangeText={name => handleNameChanges(name)}
           label="Name"
         />
         <TextInput
-          value={context.user.email}
-          onChangeText={email => context.updateEmail(email)}
+          value={DefaultUser.email}
+          onChangeText={email => handleEmailChanges(email)}
           label="E-mail"
         />
         <TextInput
-          value={context.user.password}
-          onChangeText={password => context.updatePassword(password)}
+          value={DefaultUser.password}
+          onChangeText={password => handlePasswordChanges(password)}
           label="Password"
         />
       </View>
