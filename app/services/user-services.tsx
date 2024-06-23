@@ -1,6 +1,7 @@
 import {User} from '../models/market-models';
 
-const usersURL = 'http://192.168.1.101:3000/users';
+const usersURL = 'http://192.168.1.102:3000/users';
+const signinURL = 'http://192.168.1.102:3000/signin';
 
 export class UserServices {
   createUser = (user: User) => {
@@ -10,8 +11,23 @@ export class UserServices {
         'Content-Type': 'application/json',
         Accept: 'application/json',
       },
-      body: JSON.stringify(user)
+      body: JSON.stringify(user),
     });
   };
-  //return UserDataResponse 
+  //return UserDataResponse
+
+  onSignin = (user: User) => {
+    const signinData: Partial<User> = {
+      email: user.email,
+      password: user.password,
+    };
+    return fetch(signinURL, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+      body: JSON.stringify(signinData),
+    });
+  };
 }

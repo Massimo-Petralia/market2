@@ -4,9 +4,9 @@ import {UserContextProvider} from '../../context/user-context/user-context-provi
 export const UserPage = () => {
 
 
-  return (
-    <UserContextProvider>
-      <UserNavigator />
-    </UserContextProvider>
-  );
+  // return (
+  //   // <UserContextProvider>
+  //   //   <UserNavigator />
+  //   // </UserContextProvider>
+  // );
 };

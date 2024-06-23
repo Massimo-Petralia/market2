@@ -1,4 +1,4 @@
-import {View} from 'react-native';
+import {StyleSheet, View} from 'react-native';
 import {Button, TextInput} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import Routes from '../../navigation/navigation-routes';
@@ -7,7 +7,7 @@ import {User} from '../../models/market-models';
 import {DefaultUser} from '../../models/default-values';
 import {UserContext} from '../../context/user-context/user-context-provider';
 import {UserContextType} from '../../context/user-context/user-context-types';
-import { useFocusEffect } from '@react-navigation/native';
+import {useFocusEffect} from '@react-navigation/native';
 
 export const UserSignupView = () => {
   const navigation = useNavigation();
@@ -29,32 +29,33 @@ export const UserSignupView = () => {
     updateSignupForm('password', password);
   };
 
-  useFocusEffect(
-    React.useCallback(()=>{
-      setUser(useUser.user)
-      console.log('log effect', user.name)
-    },[useUser.user])
-  )
+
 
   return (
     <View>
-      <View id="signup-form">
+      <View id="signup-form" style={{marginHorizontal: 20, marginVertical: 10}}>
         <TextInput
+          style={style.input}
           value={user.name}
           onChangeText={name => handleNameChanges(name)}
           label="Name"
         />
         <TextInput
+          style={style.input}
           value={user.email}
           onChangeText={email => handleEmailChanges(email)}
           label="E-mail"
         />
         <TextInput
+          style={style.input}
           value={user.password}
           onChangeText={password => handlePasswordChanges(password)}
           label="Password"
         />
-        <Button mode="contained" onPress={() => useUser.onSignup(user)}>
+        <Button
+          style={{marginVertical: 10}}
+          mode="contained"
+          onPress={() => useUser.onSignup(user)}>
           Signup
         </Button>
       </View>
@@ -71,3 +72,9 @@ export const UserSignupView = () => {
     </View>
   );
 };
+
+const style = StyleSheet.create({
+  input: {
+    marginVertical: 5,
+  },
+});
