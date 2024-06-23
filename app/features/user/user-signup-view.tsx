@@ -1,5 +1,5 @@
 import {StyleSheet, View} from 'react-native';
-import {Button, TextInput} from 'react-native-paper';
+import {Button, TextInput, Text} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import Routes from '../../navigation/navigation-routes';
 import React, {useState, useContext} from 'react';
@@ -29,8 +29,6 @@ export const UserSignupView = () => {
     updateSignupForm('password', password);
   };
 
-
-
   return (
     <View>
       <View id="signup-form" style={{marginHorizontal: 20, marginVertical: 10}}>
@@ -59,16 +57,20 @@ export const UserSignupView = () => {
           Signup
         </Button>
       </View>
-      <Button
-        mode="contained"
-        onPress={() =>
-          navigation.navigate(Routes.root.main, {
-            screen: Routes.root.tab.user.index,
-            params: {screen: Routes.root.tab.user.signin},
-          })
-        }>
-        go to signin
-      </Button>
+
+      <View style={{alignItems: 'center', marginVertical: 10}}>
+        <Text style={{marginVertical: 10}}>If you are already registered</Text>
+        <Button
+          mode="contained"
+          onPress={() =>
+            navigation.navigate(Routes.root.main, {
+              screen: Routes.root.tab.user.index,
+              params: {screen: Routes.root.tab.user.signin},
+            })
+          }>
+          go to signin
+        </Button>
+      </View>
     </View>
   );
 };

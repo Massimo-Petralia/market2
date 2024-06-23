@@ -37,7 +37,7 @@ export const UserSigninView = () => {
 
   return (
     <View>
-      <View id="signin-form">
+      <View id="signin-form"  style={{marginHorizontal: 20, marginVertical: 10}}>
         <TextInput
           style={style.input}
           value={user.email}
@@ -59,10 +59,13 @@ export const UserSigninView = () => {
       </View>
 
       {useUser.user.id !== undefined ? (
-        <Text>{`Wellcome ${user.name} !`}</Text>
+        <View style={{alignItems: 'center'}}>
+        <Text style={{color: 'dodgerblue'}}>{`Hello ${user.name} !`}</Text>
+        </View>
       ) : null}
-
-      <Button
+<View style={{alignItems: 'center', marginVertical: 10}}>
+  <Text style={{marginVertical: 10}}>If you are new</Text>
+  <Button
         mode="contained"
         onPress={() =>
           navigation.navigate(Routes.root.main, {
@@ -72,6 +75,8 @@ export const UserSigninView = () => {
         }>
         go to signup
       </Button>
+</View>
+  
     </View>
   );
 };

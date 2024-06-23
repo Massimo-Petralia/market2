@@ -17,6 +17,12 @@
       "password": "$2a$10$iqDmgBlQkvfmnjC6rcAoFOqOsB1MLYzGSHKjvIXO2ViGDQBPNO8p2",
       "name": "Sais",
       "id": 3
+    },
+    {
+      "email": "ruro@hotmail.it",
+      "password": "$2a$10$AGhv42UMaQMSzHBc1e3BSubahjlO/I4fJ8gZue2N5V/Hn26.j0EA.",
+      "name": "ruronin",
+      "id": 4
     }
   ],
   "products": []
