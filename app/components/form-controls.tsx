@@ -5,8 +5,11 @@ import {useContext} from 'react';
 import {MD3LightTheme, MD3DarkTheme, Button, Text} from 'react-native-paper';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {View} from 'react-native';
-export const FormControls = () => {
+import { ProductContext } from '../context/product-context/product-context-provider';
+import { ProductContextType } from '../context/product-context/product-context-types';
+export const FormControls = ({product, accessToken}:{product: Product, accessToken: string}) => {
   const {marketState} = useContext<MarketContextType>(MarketContext);
+  const useProduct = useContext<ProductContextType>(ProductContext)
   return (
     <View>
       <View
@@ -22,7 +25,7 @@ export const FormControls = () => {
             flexDirection: 'row',
             justifyContent: 'center',
           }}
-          onPress={() => 'placeholder'}>
+          onPress={() => useProduct.addProduct(product,accessToken)}>
           <FontAwesome5 name="save" size={16} />
           <Text
             style={{

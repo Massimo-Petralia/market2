@@ -1,5 +1,5 @@
 export interface User {
-    accessTokken?: string;
+    accessTokken: string;
     id?: number;
     name: string;
     email: string;
@@ -21,7 +21,7 @@ export type Product = {
     description: string;
     price: string;
     images: string[];
-    userId: number| null
+    userId?: number| null
 }
 
 export interface MarketState {

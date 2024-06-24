@@ -3,6 +3,7 @@ import {ProductView} from './product-view';
 import {Button} from 'react-native-paper';
 import {useNavigation} from '@react-navigation/native';
 import Routes from '../../navigation/navigation-routes';
+import {ProductContextProvider} from '../../context/product-context/product-context-provider';
 
 export const ProductPage = () => {
   const navigation = useNavigation();
@@ -14,7 +15,9 @@ export const ProductPage = () => {
         onPress={() => navigation.navigate(Routes.root.main, {screen: 'Home'})}>
         go back after delete
       </Button> */}
-      <ProductView />
+      <ProductContextProvider>
+        <ProductView />
+      </ProductContextProvider>
     </View>
   );
 };

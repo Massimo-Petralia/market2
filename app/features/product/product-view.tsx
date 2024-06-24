@@ -9,11 +9,12 @@ import {MD3LightTheme, MD3DarkTheme} from 'react-native-paper';
 import {MarketContext} from '../../context/market-context/market-context-provider';
 import {MarketContextType} from '../../context/market-context/market-context-type';
 import {FormControls} from '../../components/form-controls';
+import {UserContext} from '../../context/user-context/user-context-provider';
+import {UserContextType} from '../../context/user-context/user-context-types';
 export const ProductView = () => {
   const {marketState} = useContext<MarketContextType>(MarketContext);
+  const {user} = useContext<UserContextType>(UserContext);
   const [product, setProduct] = useState<Product>(DefaultProduct);
-  //const [images, setImages] = useState<string[]>([]);
-
   const updateFormProduct = (key: keyof Product, value: string | string[]) => {
     setProduct(previousState => {
       return {...previousState, [key]: value};
@@ -66,10 +67,11 @@ export const ProductView = () => {
           style={style.input}
         />
       </View>
-    
-        <ImagesPreview handleImagesChanges={handleImagesChanges} />
-        <FormControls />
-    
+      <ImagesPreview handleImagesChanges={handleImagesChanges} />
+      <FormControls
+        product={{...product, userId: user.id}}
+        accessToken={user.accessTokken}
+      />
     </View>
   );
 };

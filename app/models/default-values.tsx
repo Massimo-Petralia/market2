@@ -1,7 +1,7 @@
 import { User } from "./market-models"
 import { Product } from "./market-models"
 export const DefaultUser: User = {
-    accessTokken: undefined,
+    accessTokken: '',
     id: undefined,
     name: '',
     email: '',
