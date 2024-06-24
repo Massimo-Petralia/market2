@@ -1,7 +1,7 @@
 import {useContext} from 'react';
 import {View, StatusBar} from 'react-native';
-import {MarketContext} from '../context/market-context-provider';
-import {MarketContextType} from '../context/market-context-type';
+import {MarketContext} from '../context/market-context/market-context-provider';
+import {MarketContextType} from '../context/market-context/market-context-type';
 import {
   PaperProvider,
   MD3LightTheme as DefaultTheme,
@@ -11,22 +11,22 @@ import {ToggleButton} from 'react-native-paper';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import tinycolor2 from 'tinycolor2';
 export const ToggleLightDarkTheme = () => {
-  const {state, updateTheme} = useContext<MarketContextType>(MarketContext);
+  const {marketState, updateTheme} = useContext<MarketContextType>(MarketContext);
   const setBottomNavColor = (color: string) => {
     changeNavigationBarColor(color, undefined, false);
   };
   const onThemeToggle = () => {
-    updateTheme(!state.isDarkTheme);
+    updateTheme(!marketState.isDarkTheme);
   };
 
-  const color: string = !state.isDarkTheme
+  const color: string = !marketState.isDarkTheme
     ? tinycolor2('rgba(28, 27, 31, 1)').toHexString()
     : tinycolor2('rgba(255, 251, 254, 1)').toHexString();
 
   return (
     <View
       style={{
-        backgroundColor: !state.isDarkTheme
+        backgroundColor: !marketState.isDarkTheme
           ? DefaultTheme.colors.background
           : MD3DarkTheme.colors.background,
           alignItems: 'flex-end'
@@ -48,17 +48,17 @@ export const PaperProviderWrapper = ({
 }: {
   children: React.ReactNode;
 }) => {
-  const {state} = useContext<MarketContextType>(MarketContext);
-  const theme = !state.isDarkTheme ? DefaultTheme : MD3DarkTheme;
+  const {marketState} = useContext<MarketContextType>(MarketContext);
+  const theme = !marketState.isDarkTheme ? DefaultTheme : MD3DarkTheme;
   return (
     <>
       <StatusBar
         backgroundColor={
-          !state.isDarkTheme
+          !marketState.isDarkTheme
             ? DefaultTheme.colors.background
             : MD3DarkTheme.colors.background
         }
-        barStyle={!state.isDarkTheme ? 'dark-content' : 'light-content'}
+        barStyle={!marketState.isDarkTheme ? 'dark-content' : 'light-content'}
       />
       <PaperProvider theme={theme}>{children}</PaperProvider>
     </>

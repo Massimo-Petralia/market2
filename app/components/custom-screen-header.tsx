@@ -1,34 +1,44 @@
-import { MD3LightTheme, MD3DarkTheme } from "react-native-paper";
-import { MarketContext } from "../context/market-context-provider";
-import { MarketContextType } from "../context/market-context-type";
-import { useContext } from "react";
-import {View,Text} from "react-native"
-import { NativeStackHeaderProps } from "@react-navigation/native-stack";
-import Routes from "../navigation/navigation-routes";
-import { ToggleLightDarkTheme } from "../modules/theming-module";
+import {MD3LightTheme, MD3DarkTheme} from 'react-native-paper';
+import {MarketContext} from '../context/market-context/market-context-provider';
+import {MarketContextType} from '../context/market-context/market-context-type';
+import React, {useContext, useEffect, useState} from 'react';
+import {UserContext} from '../context/user-context/user-context-provider';
+import {UserContextType} from '../context/user-context/user-context-types';
+import {View, Text} from 'react-native';
+import {NativeStackHeaderProps} from '@react-navigation/native-stack';
+import Routes from '../navigation/navigation-routes';
+import {ToggleLightDarkTheme} from '../theming/theme-manager';
+
 export const CustomHeader = (props: NativeStackHeaderProps) => {
-    const {state} = useContext<MarketContextType>(MarketContext);
-  
-    return (
-      <View
+  const {marketState} = useContext<MarketContextType>(MarketContext);
+  const {user} = useContext<UserContextType>(UserContext);
+  const [userName, setUserName] = useState('');
+
+  useEffect(() => {
+    setUserName(user.name);
+  }, [user]);
+
+  return (
+    <View
+      style={{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        alignItems: 'center',
+        paddingHorizontal: 10,
+        backgroundColor: !marketState.isDarkTheme
+          ? MD3LightTheme.colors.background
+          : MD3DarkTheme.colors.background,
+      }}>
+      <Text
         style={{
-          flexDirection: 'row',
-          justifyContent: 'space-between',
-          alignItems: 'center',
-          paddingHorizontal: 10,
-          backgroundColor: !state.isDarkTheme
-            ? MD3LightTheme.colors.background
-            : MD3DarkTheme.colors.background,
+          color: !marketState.isDarkTheme
+            ? MD3LightTheme.colors.onBackground
+            : MD3DarkTheme.colors.onBackground,
         }}>
-        <Text
-          style={{
-            color: !state.isDarkTheme
-              ? MD3LightTheme.colors.onBackground
-              : MD3DarkTheme.colors.onBackground,
-          }}>
-          {Routes.root.main}
-        </Text>
-        <ToggleLightDarkTheme />
-      </View>
-    );
-  };
+        {Routes.root.main}
+      </Text>
+      <Text style={{color: 'dodgerblue'}}>{user.name ? userName : ''}</Text>
+      <ToggleLightDarkTheme />
+    </View>
+  );
+};

@@ -1,18 +1,21 @@
 import React from 'react';
 import {SafeAreaView} from 'react-native';
-import {MarketProvider} from './app/context/market-context-provider';
+import {MarketContextProvider} from './app/context/market-context/market-context-provider';
 import {RootNavigator} from './app/navigation/navigation';
-import {PaperProviderWrapper} from './app/modules/theming-module';
+import { PaperProviderWrapper } from './app/theming/theme-manager';
+import { UserContextProvider } from './app/context/user-context/user-context-provider';
 
 function App(): React.JSX.Element {
   return (
-    <MarketProvider>
+    <MarketContextProvider>
       <SafeAreaView style={{flex: 1}}>
         <PaperProviderWrapper>
+          <UserContextProvider>
           <RootNavigator />
+          </UserContextProvider>
         </PaperProviderWrapper>
       </SafeAreaView>
-    </MarketProvider>
+    </MarketContextProvider>
   );
 }
 
