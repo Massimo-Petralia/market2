@@ -8,12 +8,12 @@ export const ProductPage = () => {
   const navigation = useNavigation();
   return (
     <View>
-      <Button
+      {/* <Button
         mode="contained"
         rippleColor="green"
         onPress={() => navigation.navigate(Routes.root.main, {screen: 'Home'})}>
         go back after delete
-      </Button>
+      </Button> */}
       <ProductView />
     </View>
   );
