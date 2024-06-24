@@ -21,8 +21,8 @@ export type Product = {
     description: string;
     price: string;
     images: string[];
-    userId: number
-}|null
+    userId: number| null
+}
 
 export interface MarketState {
     products: Product[];
