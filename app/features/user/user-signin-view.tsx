@@ -31,13 +31,12 @@ export const UserSigninView = () => {
   useFocusEffect(
     React.useCallback(() => {
       setUser(useUser.user);
-      console.log('log effect', user.id);
     }, [useUser.user]),
   );
 
   return (
     <View>
-      <View id="signin-form"  style={{marginHorizontal: 20, marginVertical: 10}}>
+      <View id="signin-form" style={{marginHorizontal: 20, marginVertical: 10}}>
         <TextInput
           style={style.input}
           value={user.email}
@@ -60,23 +59,22 @@ export const UserSigninView = () => {
 
       {useUser.user.id !== undefined ? (
         <View style={{alignItems: 'center'}}>
-        <Text style={{color: 'dodgerblue'}}>{`Hello ${user.name} !`}</Text>
+          <Text style={{color: 'dodgerblue'}}>{`Hello ${user.name} !`}</Text>
         </View>
       ) : null}
-<View style={{alignItems: 'center', marginVertical: 10}}>
-  <Text style={{marginVertical: 10}}>If you are new</Text>
-  <Button
-        mode="contained"
-        onPress={() =>
-          navigation.navigate(Routes.root.main, {
-            screen: Routes.root.tab.user.index,
-            params: {screen: Routes.root.tab.user.signup},
-          })
-        }>
-        go to signup
-      </Button>
-</View>
-  
+      <View style={{alignItems: 'center', marginVertical: 10}}>
+        <Text style={{marginVertical: 10}}>If you are new</Text>
+        <Button
+          mode="contained"
+          onPress={() =>
+            navigation.navigate(Routes.root.main, {
+              screen: Routes.root.tab.user.index,
+              params: {screen: Routes.root.tab.user.signup},
+            })
+          }>
+          go to signup
+        </Button>
+      </View>
     </View>
   );
 };

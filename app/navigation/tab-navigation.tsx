@@ -1,6 +1,5 @@
 import {createMaterialBottomTabNavigator} from 'react-native-paper/react-navigation';
 import {ProductsListPage} from '../features/products-list/products-list-page';
-import {UserPage} from '../features/user/user-page';
 import {ProductPage} from '../features/product/product-page';
 import {CartPage} from '../features/cart/cart-page';
 import {TabParamList} from './navigation-types';
@@ -8,7 +7,6 @@ import Routes from './navigation-routes';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTheme} from 'react-native-paper';
 import {UserNavigator} from './user-navigation';
-import {UserContextProvider} from '../context/user-context/user-context-provider';
 
 const Tab = createMaterialBottomTabNavigator<TabParamList>();
 

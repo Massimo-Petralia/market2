@@ -34,6 +34,7 @@ const UserContextProvider = ({children}: {children: React.ReactNode}) => {
             name: user.name,
             email: user.email,
             password: user.password,
+            cart: []
           };
           setNotification({type: 'info', text: `Wellcome ${user.name} !`});
           toggleModal();
@@ -43,24 +44,24 @@ const UserContextProvider = ({children}: {children: React.ReactNode}) => {
   };
 
   const onSignin = (user: User) => {
-    userServices.onSignin(user).then(
-      async response => {
-        const userDataResponse : UserDataResponse = await response.json();
-        if(userDataResponse){
-          const {accessToken, user} = userDataResponse
+    userServices
+      .onSignin(user)
+      .then(async response => {
+        const userDataResponse: UserDataResponse = await response.json();
+        if (userDataResponse) {
+          const {accessToken, user} = userDataResponse;
           const userData: User = {
             id: user.id,
             accessTokken: accessToken,
             name: user.name,
             email: user.email,
             password: user.password,
+            cart: []
           };
-          setUser(userData)
-          console.log('user data: ', userData.id)
-
+          setUser(userData);
         }
-      }
-    ).catch(error => console.error('signin post request failed: ', error))
+      })
+      .catch(error => console.error('signin post request failed: ', error));
   };
 
   return (
