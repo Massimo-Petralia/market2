@@ -8,7 +8,7 @@ export const ProductView = () => {
   const [product, setProduct] = useState<Product>(DefaultProduct);
   const [images, setImages] = useState<string[]>([]);
   const handleImages = (images: string[]) => {
-    setImages(images);
+    setImages(images);//
   };
 
   const updateFormProduct = (key: keyof Product, value: string | string[]) => {
@@ -22,6 +22,9 @@ export const ProductView = () => {
     updateFormProduct('description', description);
   const handlePriceChanges = (price: string) =>
     updateFormProduct('price', price);
+  const handleImagesChanges = (images: string[])=> {
+    updateFormProduct('images', images)
+  }
 
   return (
     <View>
