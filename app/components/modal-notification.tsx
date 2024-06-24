@@ -1,11 +1,11 @@
 import {useState, useContext} from 'react';
 import {View} from 'react-native';
 import {Modal, Portal, Text, Button, Icon} from 'react-native-paper';
-export type NotificationTypes = 'info' | 'warning';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import {MD3DarkTheme, MD2LightTheme} from 'react-native-paper';
 import {MarketContext} from '../context/market-context/market-context-provider';
 import {MarketContextType} from '../context/market-context/market-context-type';
+export type NotificationTypes = 'info' | 'warning';
 export interface Notification {
   text: string;
   type: NotificationTypes;

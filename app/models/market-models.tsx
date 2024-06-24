@@ -9,7 +9,7 @@ export interface User {
 
 
 export type UserDataResponse = {
-    accessToken?: string;
+    accessToken: string;
     user: User
 }|null
 
