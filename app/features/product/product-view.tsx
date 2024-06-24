@@ -1,4 +1,4 @@
-import {useState, useContext} from 'react';
+import React, {useState, useContext, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {Text, TextInput} from 'react-native-paper';
 import {Product} from '../../models/market-models';
@@ -11,9 +11,13 @@ import {MarketContextType} from '../../context/market-context/market-context-typ
 import {FormControls} from '../../components/form-controls';
 import {UserContext} from '../../context/user-context/user-context-provider';
 import {UserContextType} from '../../context/user-context/user-context-types';
+import {ProductContext} from '../../context/product-context/product-context-provider';
+import {ProductContextType} from '../../context/product-context/product-context-types';
+import {useFocusEffect} from '@react-navigation/native';
 export const ProductView = () => {
   const {marketState} = useContext<MarketContextType>(MarketContext);
   const {user} = useContext<UserContextType>(UserContext);
+  const useProduct = useContext<ProductContextType>(ProductContext);
   const [product, setProduct] = useState<Product>(DefaultProduct);
   const updateFormProduct = (key: keyof Product, value: string | string[]) => {
     setProduct(previousState => {
@@ -29,6 +33,10 @@ export const ProductView = () => {
   const handleImagesChanges = (images: string[]) => {
     updateFormProduct('images', images);
   };
+
+  useEffect(() => {
+    setProduct(useProduct.product);
+  }, [useProduct.product]);
 
   return (
     <View>

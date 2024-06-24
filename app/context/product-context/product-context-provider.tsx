@@ -28,12 +28,13 @@ const ProductContextProvider = ({children}: {children: React.ReactNode}) => {
         const data = await response.json();
         if (typeof data === 'string') {
           const warning: string = data;
-          setNotification({type: 'warning', text: data});
+          setNotification({type: 'warning', text: warning});
           toggleModal();
         } else {
           const product: Product = data;
-          setProduct(product); // questo trighererà un'effetto nella prodotto
-          console.log('response data: ', product.name);
+          setProduct(product); 
+          setNotification({type: 'info', text: 'Product added'});
+          toggleModal();
         }
       })
       .catch(error => console.error('post request failed: ', error));

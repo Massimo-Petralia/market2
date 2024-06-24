@@ -7,7 +7,6 @@ import {User} from '../../models/market-models';
 import {DefaultUser} from '../../models/default-values';
 import {UserContext} from '../../context/user-context/user-context-provider';
 import {UserContextType} from '../../context/user-context/user-context-types';
-import {useFocusEffect} from '@react-navigation/native';
 
 export const UserSignupView = () => {
   const navigation = useNavigation();
