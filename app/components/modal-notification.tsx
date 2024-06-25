@@ -66,6 +66,7 @@ export const ModalNotification = ({
   return (
     <Portal>
       <Modal
+      theme={{colors: {backdrop: 'rgba(128, 128, 128, 0.6)', }}}
         visible={isVisible}
         onDismiss={toggleModal}
         contentContainerStyle={{
