@@ -2,5 +2,6 @@ import { Product } from "../../models/market-models";
 
 export type ProductContextType = {
     product: Product;
-    addProduct: (product: Product, accessToken:string) => void
+    onCreateProduct: (product: Product, accessToken:string) => void
+    onUpdateProduct: (product: Product, accessToken:string) => void
 }

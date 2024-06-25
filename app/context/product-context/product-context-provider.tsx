@@ -21,7 +21,7 @@ const ProductContextProvider = ({children}: {children: React.ReactNode}) => {
     setVisible(!visible);
   };
 
-  const addProduct = (product: Product, accessToken: string) => {
+  const onCreateProduct = (product: Product, accessToken: string) => {
     productServices
       .createProduct(product, accessToken)
       .then(async response => {
@@ -40,9 +40,27 @@ const ProductContextProvider = ({children}: {children: React.ReactNode}) => {
       .catch(error => console.error('post request failed: ', error));
   };
 
+const onUpdateProduct = (product: Product, accessToken: string) => {
+  productServices.updateProduct(product, accessToken).then(
+    async response => {
+      const data = await response.json();
+      if (typeof data === 'string') {
+        const warning : string = data;
+        setNotification({type: 'warning', text: warning})
+        toggleModal()
+      } else {
+        const product : Product = data;
+        setProduct(product);
+        setNotification({type: 'info', text : 'Product updated'})
+        toggleModal()
+      }
+    }
+  ).catch(error => console.error('put request failed: ', error))
+}
+
   return (
     <>
-      <ProductContext.Provider value={{product, addProduct}}>
+      <ProductContext.Provider value={{product, onCreateProduct, onUpdateProduct}}>
         {children}
       </ProductContext.Provider>
       <ModalNotification
