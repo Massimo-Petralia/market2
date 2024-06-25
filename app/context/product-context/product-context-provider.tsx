@@ -32,7 +32,7 @@ const ProductContextProvider = ({children}: {children: React.ReactNode}) => {
           toggleModal();
         } else {
           const product: Product = data;
-          setProduct(product); 
+          setProduct(product);
           setNotification({type: 'info', text: 'Product added'});
           toggleModal();
         }
@@ -40,34 +40,36 @@ const ProductContextProvider = ({children}: {children: React.ReactNode}) => {
       .catch(error => console.error('post request failed: ', error));
   };
 
-const onUpdateProduct = (product: Product, accessToken: string) => {
-  productServices.updateProduct(product, accessToken).then(
-    async response => {
-      const data = await response.json();
-      if (typeof data === 'string') {
-        const warning : string = data;
-        setNotification({type: 'warning', text: warning})
-        toggleModal()
-      } else {
-        const product : Product = data;
-        setProduct(product);
-        setNotification({type: 'info', text : 'Product updated'})
-        toggleModal()
-      }
-    }
-  ).catch(error => console.error('put request failed: ', error))
-}
+  const onUpdateProduct = (product: Product, accessToken: string) => {
+    productServices
+      .updateProduct(product, accessToken)
+      .then(async response => {
+        const data = await response.json();
+        if (typeof data === 'string') {
+          const warning: string = data;
+          setNotification({type: 'warning', text: warning});
+          toggleModal();
+        } else {
+          const product: Product = data;
+          setProduct(product);
+          setNotification({type: 'info', text: 'Product updated'});
+          toggleModal();
+        }
+      })
+      .catch(error => console.error('put request failed: ', error));
+  };
 
   return (
     <>
-      <ProductContext.Provider value={{product, onCreateProduct, onUpdateProduct}}>
+      <ProductContext.Provider
+        value={{product, onCreateProduct, onUpdateProduct}}>
         {children}
+        <ModalNotification
+          visible={visible}
+          notification={notification}
+          toggleModal={toggleModal}
+        />
       </ProductContext.Provider>
-      <ModalNotification
-        visible={visible}
-        notification={notification}
-        toggleModal={toggleModal}
-      />
     </>
   );
 };

@@ -7,7 +7,7 @@ import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
 import {View} from 'react-native';
 import {ProductContext} from '../context/product-context/product-context-provider';
 import {ProductContextType} from '../context/product-context/product-context-types';
-export const FormControls = ({
+export const FormControlSave = ({
   product,
   accessToken,
 }: {

@@ -1,11 +1,13 @@
-import {useState, useContext} from 'react';
+import {useState, useContext, useEffect} from 'react';
 import {View} from 'react-native';
 import {Modal, Portal, Text, Button, Icon} from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {MD3DarkTheme, MD2LightTheme} from 'react-native-paper';
+import {MD3DarkTheme, MD3LightTheme} from 'react-native-paper';
 import {MarketContext} from '../context/market-context/market-context-provider';
 import {MarketContextType} from '../context/market-context/market-context-type';
-export type NotificationTypes = 'info' | 'warning';
+import {ProductContext} from '../context/product-context/product-context-provider';
+import {ProductContextType} from '../context/product-context/product-context-types';
+export type NotificationTypes = 'info' | 'warning' | 'delete';
 export interface Notification {
   text: string;
   type: NotificationTypes;
@@ -24,12 +26,19 @@ export const ModalNotification = ({
   notification: Notification;
   toggleModal: () => void;
 }) => {
+  const [isVisible, setIsVisible] = useState<boolean>(false);
   const {marketState} = useContext<MarketContextType>(MarketContext);
+  const {product} = useContext<ProductContextType>(ProductContext);
   const customizeModal = (type: NotificationTypes): CustomModal => {
     let content: CustomModal = {
       iconName: '',
       color: '',
     };
+
+    useEffect(() => {
+      setIsVisible(visible);
+    }, [visible]);
+
     if (type === 'info') {
       content = {
         iconName: 'info-circle',
@@ -39,7 +48,17 @@ export const ModalNotification = ({
     if (type === 'warning') {
       content = {
         iconName: 'warning',
-        color: 'goldenrod',
+        color: !marketState.isDarkTheme
+          ? MD3LightTheme.colors.tertiary
+          : MD3DarkTheme.colors.tertiary,
+      };
+    }
+    if (type === 'delete') {
+      content = {
+        iconName: 'warning',
+        color: !marketState.isDarkTheme
+          ? MD3LightTheme.colors.tertiary
+          : MD3DarkTheme.colors.tertiary,
       };
     }
     return content;
@@ -47,12 +66,12 @@ export const ModalNotification = ({
   return (
     <Portal>
       <Modal
-        visible={visible}
+        visible={isVisible}
         onDismiss={toggleModal}
         contentContainerStyle={{
           padding: 20,
           backgroundColor: !marketState.isDarkTheme
-            ? MD2LightTheme.colors.background
+            ? MD3LightTheme.colors.background
             : MD3DarkTheme.colors.background,
           borderRadius: 20,
         }}
@@ -61,19 +80,37 @@ export const ModalNotification = ({
           marginVertical: 20,
           alignItems: 'center',
         }}>
-        <View style={{flexDirection: 'row'}}>
-          <FontAwesome
-            size={20}
-            color={customizeModal(notification.type).color}
-            name={customizeModal(notification.type).iconName}
-          />
-          <Text
-            style={{
-              color: customizeModal(notification.type).color,
-              marginLeft: 10,
-            }}>
-            {notification.text}
-          </Text>
+        <View>
+          <View style={{flexDirection: 'row'}}>
+            <FontAwesome
+              size={20}
+              color={customizeModal(notification.type).color}
+              name={customizeModal(notification.type).iconName}
+            />
+            <Text
+              style={{
+                color: customizeModal(notification.type).color,
+                marginLeft: 10,
+              }}>
+              {notification.type === 'delete'
+                ? notification.text + ' ' + `${product.name}`
+                : notification.text}
+            </Text>
+          </View>
+
+          {notification.type === 'delete' ? (
+            <View
+              style={{
+                flexDirection: 'row',
+                justifyContent: 'space-around',
+                marginTop: 10,
+              }}>
+              <Button mode="contained" onPress={() => setIsVisible(!isVisible)}>
+                No
+              </Button>
+              <Button mode="contained">Yes</Button>
+            </View>
+          ) : null}
         </View>
       </Modal>
     </Portal>

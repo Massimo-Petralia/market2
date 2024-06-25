@@ -8,12 +8,12 @@ import {ImagesPreview} from '../../components/images-preview';
 import {MD3LightTheme, MD3DarkTheme} from 'react-native-paper';
 import {MarketContext} from '../../context/market-context/market-context-provider';
 import {MarketContextType} from '../../context/market-context/market-context-type';
-import {FormControls} from '../../components/form-controls';
+import {FormControlSave} from '../../components/form-control-save';
 import {UserContext} from '../../context/user-context/user-context-provider';
 import {UserContextType} from '../../context/user-context/user-context-types';
 import {ProductContext} from '../../context/product-context/product-context-provider';
 import {ProductContextType} from '../../context/product-context/product-context-types';
-import {useFocusEffect} from '@react-navigation/native';
+import {FormControlDelete} from '../../components/form-control-delete';
 export const ProductView = () => {
   const {marketState} = useContext<MarketContextType>(MarketContext);
   const {user} = useContext<UserContextType>(UserContext);
@@ -43,19 +43,27 @@ export const ProductView = () => {
       <View
         id="form-product"
         style={{marginHorizontal: 20, marginVertical: 10}}>
-        <View
-          style={{flexDirection: 'row', alignItems: 'center', marginLeft: 10}}>
-          <MaterialIcons
-            name="add-circle"
-            color={
-              !marketState.isDarkTheme
-                ? MD3LightTheme.colors.primary
-                : MD3DarkTheme.colors.primary
-            }
-            size={16}
-          />
-          <Text style={{margin: 10, fontWeight: 'bold'}}>Add Product</Text>
+        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
+          <View
+            style={{
+              flexDirection: 'row',
+              alignItems: 'center',
+              marginLeft: 10,
+            }}>
+            <MaterialIcons
+              name="add-circle"
+              color={
+                !marketState.isDarkTheme
+                  ? MD3LightTheme.colors.primary
+                  : MD3DarkTheme.colors.primary
+              }
+              size={16}
+            />
+            <Text style={{margin: 10, fontWeight: 'bold'}}>{!product.id ? 'Add Product': product.name}</Text>
+          </View>
+          <FormControlDelete/>
         </View>
+
         <TextInput
           label="Name"
           value={product.name}
@@ -76,7 +84,7 @@ export const ProductView = () => {
         />
       </View>
       <ImagesPreview handleImagesChanges={handleImagesChanges} />
-      <FormControls
+      <FormControlSave
         product={{...product, userId: user.id}}
         accessToken={user.accessTokken}
       />

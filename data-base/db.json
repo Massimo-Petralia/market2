@@ -85,20 +85,36 @@
       "id": 7
     },
     {
-      "description": "bianchi",
-      "id": 8,
-      "images": [],
-      "name": "bicicletta",
-      "price": "300euro",
-      "userId": 1
-    },
-    {
       "name": "carta parati",
       "description": "bianca",
       "price": "30euro",
       "images": [],
       "userId": 1,
       "id": 9
+    },
+    {
+      "name": "arancia",
+      "description": "meccanica-----fantascienza-azione",
+      "price": "100euro",
+      "images": [],
+      "userId": 1,
+      "id": 10
+    },
+    {
+      "name": "cassettaninja",
+      "description": "vhs anime pioner oav",
+      "price": "40eur",
+      "images": [],
+      "userId": 1,
+      "id": 11
+    },
+    {
+      "name": "casio",
+      "description": "orologgio giapponese",
+      "price": "50euro",
+      "images": [],
+      "userId": 1,
+      "id": 12
     }
   ]
 }
