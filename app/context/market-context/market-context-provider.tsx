@@ -1,5 +1,5 @@
 import {useState, createContext} from 'react';
-import {MarketState, Product, User} from '../../models/market-models';
+import {MarketState, Notification, Product, User} from '../../models/market-models';
 import {MarketContextType} from './market-context-type';
 import {initialMarketState, DefaultMarketContext} from './default-values';
 
@@ -20,13 +20,18 @@ const MarketContextProvider = ({children}: {children: React.ReactNode}) => {
     setState(marketState => ({...marketState, user: user}));
   };
 
-  const updateNotification = (notification: string) => {
+  const updateNotification = (notification: Notification) => {
     setState(marketState => ({...marketState, notification: notification}));
   };
 
   const updateTheme = (isDarkTheme: boolean) => {
     setState(marketState => ({...marketState, isDarkTheme}));
   };
+
+  const toggleModal = () => {
+    const visible = marketState.modalVisibility
+    setState(marketState => ({...marketState,modalVisibility: !visible}))
+  }
 
   return (
     <MarketContext.Provider
@@ -37,6 +42,7 @@ const MarketContextProvider = ({children}: {children: React.ReactNode}) => {
         updateUser,
         updateNotification,
         updateTheme,
+        toggleModal
       }}>
       {children}
     </MarketContext.Provider>

@@ -14,7 +14,6 @@ export class ProductServices {
   };
 
   updateProduct = (product: Product, accessToken: string) => {
-    console.log('cosa arriva ?: ', 'product: ', product, ' access token: ', accessToken)
     return fetch(`${productsURL}/${product.id}`, {
       method: 'PUT',
       headers: {
@@ -23,6 +22,17 @@ export class ProductServices {
         Authorization: `Bearer ${accessToken}`,
       },
       body: JSON.stringify(product),
+    });
+  };
+
+  deleteProduct = (productId: number, accessToken: string) => {
+    return fetch(`${productsURL}/${productId}`, {
+      method: 'DELETE',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+        Authorization: `Bearer ${accessToken}`,
+      },
     });
   };
 }

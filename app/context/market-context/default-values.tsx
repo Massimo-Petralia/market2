@@ -7,16 +7,18 @@ export const initialMarketState: MarketState = {
     products: [],
     product: null,
     user: DefaultUser,
-    notification: '',
     isDarkTheme: false,
+    modalVisibility: false,
+    notification: {type:  'info' || 'warning' || 'delete', text:''}
   };
   
   export const DefaultMarketContext: MarketContextType = {
     marketState: initialMarketState,
-    updateTheme: () => {},
     updateProducts: () => {},
     updateProduct: () => {},
     updateUser: () => {},
+    updateTheme: () => {},
     updateNotification: () => {},
+    toggleModal: () => {}
   };
   

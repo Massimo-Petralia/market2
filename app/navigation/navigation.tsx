@@ -9,6 +9,8 @@ import {MarketContext} from '../context/market-context/market-context-provider';
 import {MarketContextType} from '../context/market-context/market-context-type';
 import {useContext} from 'react';
 import {CustomHeader} from '../components/custom-screen-header';
+import { ProductContextProvider } from '../context/product-context/product-context-provider';
+import { ModalNotification } from '../components/modal-notification';
 const {DarkTheme} = adaptNavigationTheme({reactNavigationDark: DefaultTheme});
 const {LightTheme} = adaptNavigationTheme({reactNavigationLight: DefaultTheme});
 const RootStack = createNativeStackNavigator<RootStackParamList>();
@@ -30,6 +32,11 @@ export const RootNavigator = () => {
           component={ProductPage}
         />
       </RootStack.Navigator>
+      {/* <ProductContextProvider>
+        <ModalNotification/>
+      </ProductContextProvider> */}
     </NavigationContainer>
+  
+ 
   );
 };

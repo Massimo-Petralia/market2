@@ -1,25 +1,20 @@
-import {createContext, useState} from 'react';
+import {createContext, useContext, useState} from 'react';
 import {DefaultProductContext} from './default-values';
 import {ProductContextType} from './product-context-types';
 import {Product} from '../../models/market-models';
 import {DefaultProduct} from '../../models/default-values';
 import {ProductServices} from '../../services/product-services';
-import {Notification} from '../../components/modal-notification';
-import {ModalNotification} from '../../components/modal-notification';
-
+import {MarketContext} from '../market-context/market-context-provider';
+import {MarketContextType} from '../market-context/market-context-type';
+import {useNavigation} from '@react-navigation/native';
+import Routes from '../../navigation/navigation-routes'
 const ProductContext = createContext<ProductContextType>(DefaultProductContext);
 const productServices = new ProductServices();
 const ProductContextProvider = ({children}: {children: React.ReactNode}) => {
+  const navigation = useNavigation()
   const [product, setProduct] = useState<Product>(DefaultProduct);
-  const [visible, setVisible] = useState<boolean>(false);
-  const [notification, setNotification] = useState<Notification>({
-    type: 'info' || 'warning',
-    text: '',
-  });
-
-  const toggleModal = () => {
-    setVisible(!visible);
-  };
+  const {toggleModal, updateNotification} =
+    useContext<MarketContextType>(MarketContext);
 
   const onCreateProduct = (product: Product, accessToken: string) => {
     productServices
@@ -28,12 +23,12 @@ const ProductContextProvider = ({children}: {children: React.ReactNode}) => {
         const data = await response.json();
         if (typeof data === 'string') {
           const warning: string = data;
-          setNotification({type: 'warning', text: warning});
+          updateNotification({type: 'warning', text: warning});
           toggleModal();
         } else {
           const product: Product = data;
           setProduct(product);
-          setNotification({type: 'info', text: 'Product added'});
+          updateNotification({type: 'info', text: 'Product added'});
           toggleModal();
         }
       })
@@ -47,30 +42,39 @@ const ProductContextProvider = ({children}: {children: React.ReactNode}) => {
         const data = await response.json();
         if (typeof data === 'string') {
           const warning: string = data;
-          setNotification({type: 'warning', text: warning});
+          updateNotification({type: 'warning', text: warning});
           toggleModal();
         } else {
           const product: Product = data;
           setProduct(product);
-          setNotification({type: 'info', text: 'Product updated'});
+          updateNotification({type: 'info', text: 'Product updated'});
           toggleModal();
         }
       })
       .catch(error => console.error('put request failed: ', error));
   };
 
+  const onDeleteProduct = (productId: number, accessToken: string) => {
+    productServices.deleteProduct(productId, accessToken).then(
+      async response => {
+        const data = await response.json()
+        if(typeof data === 'string') {
+          const warning : string = data
+          updateNotification({type: 'info', text: 'Product updated'})
+          toggleModal()
+
+        }else {
+          navigation.navigate('Market2',{screen: Routes.root.tab.home})
+        }
+      }
+    )
+  }
+
   return (
-    <>
-      <ProductContext.Provider
-        value={{product, onCreateProduct, onUpdateProduct}}>
-        {children}
-        <ModalNotification
-          visible={visible}
-          notification={notification}
-          toggleModal={toggleModal}
-        />
-      </ProductContext.Provider>
-    </>
+    <ProductContext.Provider
+      value={{product, onCreateProduct, onUpdateProduct, onDeleteProduct}}>
+      {children}
+    </ProductContext.Provider>
   );
 };
 
