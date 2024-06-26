@@ -107,7 +107,7 @@ export const ModalNotification = () => {
                   if (product.id) {
                     onDeleteProduct(product.id, user.accessTokken);
                   }
-                  console.log('log product id: ', product.id)
+                  toggleModal()
                 }}>
                 Yes
               </Button>

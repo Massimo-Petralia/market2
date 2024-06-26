@@ -81,6 +81,38 @@
       "images": [],
       "userId": 1,
       "id": 7
+    },
+    {
+      "name": "Biso",
+      "description": "Ddd",
+      "price": "8",
+      "images": [],
+      "userId": 1,
+      "id": 8
+    },
+    {
+      "name": "Fff",
+      "description": "Uuu",
+      "price": "999",
+      "images": [],
+      "userId": 1,
+      "id": 9
+    },
+    {
+      "name": "Some item3",
+      "description": "Testing",
+      "price": "0",
+      "images": [],
+      "userId": 1,
+      "id": 10
+    },
+    {
+      "name": "pig",
+      "description": "geot",
+      "price": "00",
+      "images": [],
+      "userId": 1,
+      "id": 11
     }
   ]
 }
