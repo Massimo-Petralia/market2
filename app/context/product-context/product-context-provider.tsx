@@ -7,11 +7,11 @@ import {ProductServices} from '../../services/product-services';
 import {MarketContext} from '../market-context/market-context-provider';
 import {MarketContextType} from '../market-context/market-context-type';
 import {useNavigation} from '@react-navigation/native';
-import Routes from '../../navigation/navigation-routes'
+import Routes from '../../navigation/navigation-routes';
 const ProductContext = createContext<ProductContextType>(DefaultProductContext);
-const productServices = new ProductServices();
 const ProductContextProvider = ({children}: {children: React.ReactNode}) => {
-  const navigation = useNavigation()
+  const productServices = new ProductServices();
+  const navigation = useNavigation();
   const [product, setProduct] = useState<Product>(DefaultProduct);
   const {toggleModal, updateNotification} =
     useContext<MarketContextType>(MarketContext);
@@ -55,24 +55,28 @@ const ProductContextProvider = ({children}: {children: React.ReactNode}) => {
   };
 
   const onDeleteProduct = (productId: number, accessToken: string) => {
-    productServices.deleteProduct(productId, accessToken).then(
-      async response => {
-        const data = await response.json()
-        if(typeof data === 'string') {
-          const warning : string = data
-          updateNotification({type: 'info', text: 'Product updated'})
-          toggleModal()
-
-        }else {
-          navigation.navigate('Market2',{screen: Routes.root.tab.home})
+    productServices
+      .deleteProduct(productId, accessToken)
+      .then(async response => {
+        const data = await response.json();
+        if (typeof data === 'string') {
+          const warning: string = data;
+          updateNotification({type: 'info', text: 'Product updated'});
+          toggleModal();
+        } else {
+          navigation.navigate('Market2', {screen: Routes.root.tab.home});
         }
-      }
-    )
-  }
+      });
+  };
 
   return (
     <ProductContext.Provider
-      value={{product, onCreateProduct, onUpdateProduct, onDeleteProduct}}>
+      value={{
+        product,
+        onCreateProduct,
+        onUpdateProduct,
+        onDeleteProduct,
+      }}>
       {children}
     </ProductContext.Provider>
   );
