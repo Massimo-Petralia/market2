@@ -13,26 +13,30 @@ import {ProductContextProvider} from './app/context/product-context/product-cont
 const {DarkTheme} = adaptNavigationTheme({reactNavigationDark: DefaultTheme});
 const {LightTheme} = adaptNavigationTheme({reactNavigationLight: DefaultTheme});
 
-function App(): React.JSX.Element {
+function AppContent(): React.JSX.Element {
   const {marketState} = useContext<MarketContextType>(MarketContext);
   return (
-    <MarketContextProvider>
-      <SafeAreaView style={{flex: 1}}>
-        <PaperProviderWrapper>
-          <UserContextProvider>
-            <NavigationContainer
-              theme={!marketState.isDarkTheme ? LightTheme : DarkTheme}>
-              <ProductContextProvider>
-                <RootNavigator />
-                <ModalNotification />
-              </ProductContextProvider>
-            </NavigationContainer>
-          </UserContextProvider>
-         
-        </PaperProviderWrapper>
-      </SafeAreaView>
-    </MarketContextProvider>
+    <SafeAreaView style={{flex: 1}}>
+      <PaperProviderWrapper>
+        <UserContextProvider>
+          <NavigationContainer
+            theme={!marketState.isDarkTheme ? LightTheme : DarkTheme}>
+            <ProductContextProvider>
+              <RootNavigator />
+              <ModalNotification />
+            </ProductContextProvider>
+          </NavigationContainer>
+        </UserContextProvider>
+      </PaperProviderWrapper>
+    </SafeAreaView>
   );
 }
 
+function App(): React.JSX.Element {
+  return (
+    <MarketContextProvider>
+      <AppContent />
+    </MarketContextProvider>
+  );
+}
 export default App;
