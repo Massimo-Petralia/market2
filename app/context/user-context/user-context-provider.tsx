@@ -1,26 +1,18 @@
-import React, {createContext, useState} from 'react';
+import React, {createContext, useContext, useState} from 'react';
 import {User, UserDataResponse} from '../../models/market-models';
 import {DefaultUser} from '../../models/default-values';
 import {UserContextType} from './user-context-types';
 import {DefaultUserContext} from './default-values';
 import {UserServices} from '../../services/user-services';
-import {
-  ModalNotification,
-  Notification,
-} from '../../components/modal-notification';
+import {MarketContext} from '../market-context/market-context-provider';
+import {MarketContextType} from '../market-context/market-context-type';
 const UserContext = createContext<UserContextType>(DefaultUserContext);
 const UserContextProvider = ({children}: {children: React.ReactNode}) => {
-  const [notification, setNotification] = useState<Notification>({
-    type: 'info' || 'warning',
-    text: '',
-  });
+  const {toggleModal, updateNotification} =
+    useContext<MarketContextType>(MarketContext);
+
   const userServices = new UserServices();
   const [user, setUser] = useState<User>(DefaultUser);
-  const [visible, setVisible] = useState<boolean>(false);
-
-  const toggleModal = () => {
-    setVisible(!visible);
-  };
 
   const onSignup = (user: User) => {
     userServices
@@ -34,9 +26,9 @@ const UserContextProvider = ({children}: {children: React.ReactNode}) => {
             name: user.name,
             email: user.email,
             password: user.password,
-            cart: []
+            cart: [],
           };
-          setNotification({type: 'info', text: `Wellcome ${user.name} !`});
+          updateNotification({type: 'info', text: `Wellcome ${user.name} !`});
           toggleModal();
         }
       })
@@ -56,7 +48,7 @@ const UserContextProvider = ({children}: {children: React.ReactNode}) => {
             name: user.name,
             email: user.email,
             password: user.password,
-            cart: []
+            cart: [],
           };
           setUser(userData);
         }
@@ -65,16 +57,9 @@ const UserContextProvider = ({children}: {children: React.ReactNode}) => {
   };
 
   return (
-    <>
-      <UserContext.Provider value={{user, onSignup, onSignin}}>
-        {children}
-      </UserContext.Provider>
-      <ModalNotification
-        visible={visible}
-        notification={notification}
-        toggleModal={toggleModal}
-      />
-    </>
+    <UserContext.Provider value={{user, onSignup, onSignin}}>
+      {children}
+    </UserContext.Provider>
   );
 };
 

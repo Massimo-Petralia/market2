@@ -1,8 +1,19 @@
-import { User } from "./market-models"
+import {User} from './market-models';
+import {Product} from './market-models';
 export const DefaultUser: User = {
-    accessTokken: undefined,
-    id: undefined,
-    name: '',
-    email: '',
-    password: ''
-}
+  accessTokken: '',
+  id: undefined,
+  name: '',
+  email: '',
+  password: '',
+  cart: [],
+};
+
+export const DefaultProduct: Product = {
+  id: undefined,
+  name: '',
+  description: '',
+  price: '',
+  images: [],
+  userId: null,
+};

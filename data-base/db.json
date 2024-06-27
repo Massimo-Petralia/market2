@@ -25,5 +25,94 @@
       "id": 4
     }
   ],
-  "products": []
+  "products": [
+    {
+      "name": "mojito",
+      "description": "koktail",
+      "price": "7euro",
+      "images": [],
+      "userId": 1,
+      "id": 1
+    },
+    {
+      "name": "bigia",
+      "description": "norditaly",
+      "price": "20euro",
+      "images": [],
+      "userId": 1,
+      "id": 2
+    },
+    {
+      "name": "dacougar",
+      "description": "mecha",
+      "price": "30euro",
+      "images": [],
+      "userId": 1,
+      "id": 3
+    },
+    {
+      "name": "tron",
+      "description": "film",
+      "price": "15e",
+      "images": [],
+      "userId": 1,
+      "id": 4
+    },
+    {
+      "name": "zanzara",
+      "description": "tigre",
+      "price": "1",
+      "images": [],
+      "userId": 1,
+      "id": 5
+    },
+    {
+      "name": "sevenzip",
+      "description": "pr",
+      "price": "3",
+      "images": [],
+      "userId": 1,
+      "id": 6
+    },
+    {
+      "name": "arauncaria",
+      "description": "fff",
+      "price": "555",
+      "images": [],
+      "userId": 1,
+      "id": 7
+    },
+    {
+      "name": "Biso",
+      "description": "Ddd",
+      "price": "8",
+      "images": [],
+      "userId": 1,
+      "id": 8
+    },
+    {
+      "name": "Fff",
+      "description": "Uuu",
+      "price": "999",
+      "images": [],
+      "userId": 1,
+      "id": 9
+    },
+    {
+      "name": "Some item3",
+      "description": "Testing",
+      "price": "0",
+      "images": [],
+      "userId": 1,
+      "id": 10
+    },
+    {
+      "name": "pig",
+      "description": "geot",
+      "price": "00",
+      "images": [],
+      "userId": 1,
+      "id": 11
+    }
+  ]
 }

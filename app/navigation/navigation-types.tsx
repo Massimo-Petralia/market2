@@ -25,5 +25,5 @@ declare global {
 }
 
 // Navigation example
-// navigation.navigate('Main', { screen: 'User', params: { screen: 'Signin' } });
-// navigation.navigate('Main', { screen: 'User', params: { screen: 'Signup' } });
+// navigation.navigate('Market2', { screen: 'User', params: { screen: 'Signin' } });
+// navigation.navigate('Market2', { screen: 'User', params: { screen: 'Signup' } });
