@@ -13,7 +13,7 @@ import {ProductContextProvider} from './app/context/product-context/product-cont
 const {DarkTheme} = adaptNavigationTheme({reactNavigationDark: DefaultTheme});
 const {LightTheme} = adaptNavigationTheme({reactNavigationLight: DefaultTheme});
 
-function AppContent(): React.JSX.Element {
+const AppContent= (): React.JSX.Element => {
   const {marketState} = useContext<MarketContextType>(MarketContext);
   return (
     <SafeAreaView style={{flex: 1}}>
