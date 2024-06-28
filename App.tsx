@@ -10,6 +10,7 @@ import {MarketContext} from './app/context/market-context/market-context-provide
 import {MarketContextType} from './app/context/market-context/market-context-type';
 import {adaptNavigationTheme} from 'react-native-paper';
 import {ProductContextProvider} from './app/context/product-context/product-context-provider';
+import { ProductsListContextProvider } from './app/context/products-list-context/products-list-context';
 const {DarkTheme} = adaptNavigationTheme({reactNavigationDark: DefaultTheme});
 const {LightTheme} = adaptNavigationTheme({reactNavigationLight: DefaultTheme});
 
@@ -21,10 +22,12 @@ const AppContent= (): React.JSX.Element => {
         <UserContextProvider>
           <NavigationContainer
             theme={!marketState.isDarkTheme ? LightTheme : DarkTheme}>
+              <ProductsListContextProvider>
             <ProductContextProvider>
               <RootNavigator />
               <ModalNotification />
             </ProductContextProvider>
+            </ProductsListContextProvider>
           </NavigationContainer>
         </UserContextProvider>
       </PaperProviderWrapper>

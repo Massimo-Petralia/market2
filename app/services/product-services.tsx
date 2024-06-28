@@ -1,17 +1,25 @@
 import {Product} from '../models/market-models';
 const productsURL = 'http://192.168.1.102:3000/644/products';
 export class ProductServices {
+  getProducts = () => {
+    return fetch(productsURL, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+  };
 
-
- getProducts = ()=> {
-  return fetch(productsURL, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json',
-      Accept: 'application/json',
-    }
-  })
- }
+  getProduct = (id: number) => {
+    return fetch(`${productsURL}/${id}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+        Accept: 'application/json',
+      },
+    });
+  };
 
   createProduct = (product: Product, accessToken: string) => {
     return fetch(productsURL, {

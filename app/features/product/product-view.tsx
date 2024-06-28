@@ -14,17 +14,18 @@ import {UserContextType} from '../../context/user-context/user-context-types';
 import {ProductContext} from '../../context/product-context/product-context-provider';
 import {ProductContextType} from '../../context/product-context/product-context-types';
 import {FormControlDelete} from '../../components/form-control-delete';
-export const ProductView = () => {
+import {useFocusEffect} from '@react-navigation/native';
+export const ProductView = ({product, setFormProduct}: {product: Product, setFormProduct: React.Dispatch<React.SetStateAction<Product>>}) => {
   const {marketState} = useContext<MarketContextType>(MarketContext);
-  const {user} = useContext<UserContextType>(UserContext);
   const useProduct = useContext<ProductContextType>(ProductContext);
-  const [product, setProduct] = useState<Product>(DefaultProduct);
+
+  const {user} = useContext<UserContextType>(UserContext);
+
   const updateFormProduct = (key: keyof Product, value: string | string[]) => {
-    setProduct(previousState => {
+    setFormProduct(previousState => {
       return {...previousState, [key]: value};
     });
   };
-
   const handleNameChanges = (name: string) => updateFormProduct('name', name);
   const handleDescriptionChanges = (description: string) =>
     updateFormProduct('description', description);
@@ -33,11 +34,9 @@ export const ProductView = () => {
   const handleImagesChanges = (images: string[]) => {
     updateFormProduct('images', images);
   };
-
-  useEffect(() => {
-    setProduct(useProduct.product);
-  }, [useProduct.product]);
-
+useEffect(()=> {
+  setFormProduct(product)
+},[product])
   return (
     <View>
       <View
@@ -59,11 +58,12 @@ export const ProductView = () => {
               }
               size={16}
             />
-            <Text style={{margin: 10, fontWeight: 'bold'}}>{!product.id ? 'Add Product': product.name}</Text>
+            <Text style={{margin: 10, fontWeight: 'bold'}}>
+              {!product.id ? 'Add Product' : product.name}
+            </Text>
           </View>
-          <FormControlDelete/>
+          <FormControlDelete />
         </View>
-
         <TextInput
           label="Name"
           value={product.name}
@@ -83,7 +83,10 @@ export const ProductView = () => {
           style={style.input}
         />
       </View>
-      <ImagesPreview handleImagesChanges={handleImagesChanges} />
+      <ImagesPreview
+        handleImagesChanges={handleImagesChanges}
+        _images={product.images}
+      />
       <FormControlSave
         product={{...product, userId: user.id}}
         accessToken={user.accessTokken}
@@ -91,7 +94,6 @@ export const ProductView = () => {
     </View>
   );
 };
-
 const style = StyleSheet.create({
   input: {
     marginVertical: 5,

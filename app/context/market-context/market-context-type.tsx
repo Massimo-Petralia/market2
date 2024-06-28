@@ -13,4 +13,5 @@ export type MarketContextType = {
   updateTheme: (isDarkTheme: boolean) => void;
   updateNotification: (notification: Notification) => void;
   toggleModal: () => void;
+  showErrorModal: (text: string) => void
 };

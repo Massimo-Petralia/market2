@@ -31,4 +31,4 @@ const ProductsListContextProvider = ({
   );
 };
 
-export {ProductsListContextProvider};
+export {ProductsListContextProvider, ProductsListContext};

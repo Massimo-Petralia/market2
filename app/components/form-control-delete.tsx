@@ -1,19 +1,26 @@
 import {useContext} from 'react';
 import {View, Pressable} from 'react-native';
-import {MD3LightTheme, MD3DarkTheme, Button, Text} from 'react-native-paper';
+import {
+  MD3LightTheme,
+  MD3DarkTheme,
+  Button,
+  Text,
+  useTheme,
+} from 'react-native-paper';
 import MaterialcommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {MarketContext} from '../context/market-context/market-context-provider';
 import {MarketContextType} from '../context/market-context/market-context-type';
 
 export const FormControlDelete = () => {
-  const {marketState, toggleModal, updateNotification} =
+  const theme = useTheme();
+  const {toggleModal, updateNotification} =
     useContext<MarketContextType>(MarketContext);
 
   return (
     <View>
       <Pressable
         style={{
-          borderColor: 'red',
+          borderColor: theme.colors.error,
           flexDirection: 'row',
           alignItems: 'center',
           borderWidth: 1,
@@ -28,9 +35,13 @@ export const FormControlDelete = () => {
           });
           toggleModal();
         }}>
-        <MaterialcommunityIcons color="red" name="delete-circle" size={25} />
+        <MaterialcommunityIcons
+          color={theme.colors.error}
+          name="delete-circle"
+          size={25}
+        />
 
-        <Text style={{color: 'red'}}> Delete </Text>
+        <Text style={{color: theme.colors.error}}> Delete </Text>
       </Pressable>
     </View>
   );

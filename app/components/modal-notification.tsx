@@ -1,8 +1,8 @@
-import {useContext, useEffect} from 'react';
+import {useContext} from 'react';
 import {View} from 'react-native';
 import {Modal, Portal, Text, Button} from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {MD3DarkTheme, MD3LightTheme} from 'react-native-paper';
+import {MD3DarkTheme, MD3LightTheme, useTheme} from 'react-native-paper';
 import {MarketContext} from '../context/market-context/market-context-provider';
 import {MarketContextType} from '../context/market-context/market-context-type';
 import {ProductContext} from '../context/product-context/product-context-provider';
@@ -17,6 +17,7 @@ interface CustomModal {
 }
 
 export const ModalNotification = () => {
+  const theme = useTheme();
   const {marketState, toggleModal} =
     useContext<MarketContextType>(MarketContext);
   const {product, onDeleteProduct} =
@@ -37,9 +38,7 @@ export const ModalNotification = () => {
     if (type === 'warning') {
       content = {
         iconName: 'warning',
-        color: !marketState.isDarkTheme
-          ? MD3LightTheme.colors.tertiary
-          : MD3DarkTheme.colors.tertiary,
+        color: theme.colors.tertiary,
       };
     }
     if (type === 'delete') {
@@ -50,11 +49,10 @@ export const ModalNotification = () => {
           : MD3DarkTheme.colors.tertiary,
       };
     }
+
     return content;
   };
-  // useEffect(() => {
-  //   setIsVisible(visible);
-  // }, [visible]);
+
   return (
     <Portal>
       <Modal
@@ -107,7 +105,6 @@ export const ModalNotification = () => {
                   if (product.id) {
                     onDeleteProduct(product.id, user.accessTokken);
                   }
-                  toggleModal()
                 }}>
                 Yes
               </Button>

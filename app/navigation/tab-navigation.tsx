@@ -1,12 +1,13 @@
 import {createMaterialBottomTabNavigator} from 'react-native-paper/react-navigation';
 import {ProductsListPage} from '../features/products-list/products-list-page';
-import {ProductPage} from '../features/product/product-page';
 import {CartPage} from '../features/cart/cart-page';
 import {TabParamList} from './navigation-types';
 import Routes from './navigation-routes';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTheme} from 'react-native-paper';
 import {UserNavigator} from './user-navigation';
+import {ProductView} from '../features/product/product-view';
+import { ProductPage } from '../features/product/product-page';
 
 const Tab = createMaterialBottomTabNavigator<TabParamList>();
 
@@ -41,7 +42,11 @@ export const MainTabNavigator = () => {
       })}>
       <Tab.Screen name={Routes.root.tab.home} component={ProductsListPage} />
       <Tab.Screen name={Routes.root.tab.user.index} component={UserNavigator} />
-      <Tab.Screen name={Routes.root.tab.Add} component={ProductPage} />
+      <Tab.Screen
+        name={Routes.root.tab.Add}
+        component={ProductPage}
+        initialParams={{id: null}}
+      />
       <Tab.Screen name={Routes.root.tab.cart} component={CartPage} />
     </Tab.Navigator>
   );
