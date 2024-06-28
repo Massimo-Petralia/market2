@@ -78,6 +78,7 @@ export const ImagesPreview = ({
           );
         })}
       </View>
+
       <Button
         mode="contained"
         style={{
