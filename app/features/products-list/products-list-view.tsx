@@ -16,7 +16,6 @@ export const ProductsListView = () => {
       let isFocused: boolean = true;
       if (isFocused) {
         onGetProductsList();
-        console.log('the "Home" screen is focused');
       }
       isFocused = false;
     }, []),

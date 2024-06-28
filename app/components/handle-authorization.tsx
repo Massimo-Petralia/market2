@@ -20,5 +20,8 @@ export const handlePurchaseAuthorization = () => {
   if (!product || !product.id) {
     return false;
   }
-  return user.id !== product.userId;
+  if (user && user.id && user.id === product.userId) {
+    return false;
+  }
+  return true;
 };
