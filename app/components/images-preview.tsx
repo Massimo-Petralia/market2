@@ -1,4 +1,4 @@
-import React, {useState, useContext, useEffect} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Image} from 'react-native';
 import {pick, types} from 'react-native-document-picker';
 import RNFS from 'react-native-fs';
@@ -6,9 +6,7 @@ import PagerView from 'react-native-pager-view';
 import {Button, Card, Divider, Text} from 'react-native-paper';
 import {DotIndicator} from './dot-indicator';
 import FontAwesome5 from 'react-native-vector-icons/FontAwesome5';
-import {MD3LightTheme, MD3DarkTheme} from 'react-native-paper';
-import {MarketContext} from '../context/market-context/market-context-provider';
-import {MarketContextType} from '../context/market-context/market-context-type';
+import {useTheme} from 'react-native-paper';
 
 export const ImagesPreview = ({
   handleImagesChanges,
@@ -17,7 +15,7 @@ export const ImagesPreview = ({
   handleImagesChanges: (images: string[]) => void;
   _images: string[];
 }) => {
-  const {marketState} = useContext<MarketContextType>(MarketContext);
+  const theme = useTheme();
   const [images, setImages] = useState<string[]>([]);
   const [counter, setCounter] = useState<number>(0);
 
@@ -91,9 +89,7 @@ export const ImagesPreview = ({
         <FontAwesome5 name="images" size={16} />
         <Text
           style={{
-            color: !marketState.isDarkTheme
-              ? MD3LightTheme.colors.onPrimary
-              : MD3DarkTheme.colors.onPrimary,
+            color: theme.colors.onPrimary,
           }}>
           {' '}
           Select

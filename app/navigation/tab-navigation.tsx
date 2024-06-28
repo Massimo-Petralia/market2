@@ -6,8 +6,7 @@ import Routes from './navigation-routes';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {useTheme} from 'react-native-paper';
 import {UserNavigator} from './user-navigation';
-import {ProductView} from '../features/product/product-view';
-import { ProductPage } from '../features/product/product-page';
+import {ProductPage} from '../features/product/product-page';
 
 const Tab = createMaterialBottomTabNavigator<TabParamList>();
 

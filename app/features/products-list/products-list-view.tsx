@@ -45,7 +45,7 @@ export const ProductsListView = () => {
             </Pressable>
           ))
         ) : (
-          <View style={{alignContent: 'center'}}>
+          <View style={{flexDirection: 'row', justifyContent: 'center'}}>
             <Text>The list is empty</Text>
           </View>
         )}

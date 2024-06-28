@@ -8,8 +8,6 @@ import {MarketContext} from '../market-context/market-context-provider';
 import {MarketContextType} from '../market-context/market-context-type';
 import {useNavigation} from '@react-navigation/native';
 import Routes from '../../navigation/navigation-routes';
-import {ProductRouteProp} from '../../navigation/navigation-types';
-import {useRoute} from '@react-navigation/native';
 
 const ProductContext = createContext<ProductContextType>(DefaultProductContext);
 const ProductContextProvider = ({children}: {children: React.ReactNode}) => {
@@ -94,6 +92,7 @@ const ProductContextProvider = ({children}: {children: React.ReactNode}) => {
 
   const resetProduct = () => {
     setProduct(DefaultProduct);
+    setFormProduct(DefaultProduct)
   };
 
   return (
