@@ -3,9 +3,9 @@ import {ProductContext} from '../context/product-context/product-context-provide
 import {ProductContextType} from '../context/product-context/product-context-types';
 import {UserContext} from '../context/user-context/user-context-provider';
 import {UserContextType} from '../context/user-context/user-context-types';
-export const handleAuthorization = () => {
-  const {user} = useContext<UserContextType>(UserContext) || {};
-  const {product} = useContext<ProductContextType>(ProductContext) || {};
+const {user} = useContext<UserContextType>(UserContext) || {};
+const {product} = useContext<ProductContextType>(ProductContext) || {};
+export const handleCrudAuthorization = () => {
   if (!user || !user.id) {
     return false;
   }
@@ -13,4 +13,12 @@ export const handleAuthorization = () => {
     return true;
   }
   return user.id === product.userId;
+};
+
+//can buy ?
+export const handlePurchaseAuthorization = () => {
+  if (!product || !product.id) {
+    return false;
+  }
+  return user.id !== product.userId;
 };
