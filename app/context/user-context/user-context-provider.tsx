@@ -9,7 +9,7 @@ import {MarketContext} from '../market-context/market-context-provider';
 import {MarketContextType} from '../market-context/market-context-type';
 const UserContext = createContext<UserContextType>(DefaultUserContext);
 const UserContextProvider = ({children}: {children: React.ReactNode}) => {
-  const {updateCart,toggleModal, updateNotification} =
+  const {toggleModal, updateNotification} =
     useContext<MarketContextType>(MarketContext);
 
   const userServices = new UserServices();
@@ -50,7 +50,7 @@ const UserContextProvider = ({children}: {children: React.ReactNode}) => {
             name: user.name,
             email: user.email,
             password: user.password,
-            cart: [],
+            cart: user.cart,
           };
           setUser(userData);
         }
@@ -66,6 +66,8 @@ const UserContextProvider = ({children}: {children: React.ReactNode}) => {
         const data = await response.json();
         const cart: Product[] = data.cart;
         setUser(prevUser => ({...prevUser, cart: cart}));
+        updateNotification({type: 'info', text: 'Product added to cart'})
+        toggleModal()
 
       })
       .catch(error => console.log('patch request failed: ', error));
