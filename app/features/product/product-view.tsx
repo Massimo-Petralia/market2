@@ -7,10 +7,11 @@ import {ImagesPreview} from '../../components/images-preview';
 import {MD3LightTheme, MD3DarkTheme} from 'react-native-paper';
 import {MarketContext} from '../../context/market-context/market-context-provider';
 import {MarketContextType} from '../../context/market-context/market-context-type';
-import {FormControlSave} from '../../components/form-control-save';
+import {FormControlSave} from '../../components/form-controls/form-control-save';
 import {UserContext} from '../../context/user-context/user-context-provider';
 import {UserContextType} from '../../context/user-context/user-context-types';
-import {FormControlDelete} from '../../components/form-control-delete';
+import {FormControlDelete} from '../../components/form-controls/form-control-delete';
+import { FormControlAddToCart } from '../../components/form-controls/form-control-add-to-cart';
 export const ProductView = ({
   product,
   setFormProduct,
@@ -90,6 +91,7 @@ export const ProductView = ({
         product={{...product, userId: user.id}}
         accessToken={user.accessTokken}
       />
+      <FormControlAddToCart  product={product}/>
     </View>
   );
 };

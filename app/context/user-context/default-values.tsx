@@ -4,4 +4,5 @@ export const DefaultUserContext = {
   user: DefaultUser,
   onSignup: () => {},
   onSignin: () => {},
+  addToUserCart: () => {},
 };

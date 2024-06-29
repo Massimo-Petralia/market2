@@ -38,6 +38,10 @@ updateNotification({type: 'warning',  text})
 setState(marketState => ({...marketState, modalVisibility: true}))
   }
 
+  const updateCart = (cart: Product[])=> {
+    setState(marketState => ({...marketState, cart}))
+  }
+
   return (
     <MarketContext.Provider
       value={{
@@ -48,7 +52,8 @@ setState(marketState => ({...marketState, modalVisibility: true}))
         updateNotification,
         updateTheme,
         toggleModal,
-        showErrorModal
+        showErrorModal,
+        updateCart
       }}>
       {children}
     </MarketContext.Provider>

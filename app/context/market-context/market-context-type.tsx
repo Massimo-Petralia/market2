@@ -14,4 +14,5 @@ export type MarketContextType = {
   updateNotification: (notification: Notification) => void;
   toggleModal: () => void;
   showErrorModal: (text: string) => void
+  updateCart: (cart: Product[])=> void
 };
