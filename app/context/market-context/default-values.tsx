@@ -19,6 +19,7 @@ export const initialMarketState: MarketState = {
     updateUser: () => {},
     updateTheme: () => {},
     updateNotification: () => {},
-    toggleModal: () => {}
+    toggleModal: () => {},
+    showErrorModal: () => {}
   };
   

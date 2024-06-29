@@ -1,8 +1,8 @@
-import {useContext, useEffect} from 'react';
+import {useContext} from 'react';
 import {View} from 'react-native';
 import {Modal, Portal, Text, Button} from 'react-native-paper';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
-import {MD3DarkTheme, MD3LightTheme} from 'react-native-paper';
+import {useTheme} from 'react-native-paper';
 import {MarketContext} from '../context/market-context/market-context-provider';
 import {MarketContextType} from '../context/market-context/market-context-type';
 import {ProductContext} from '../context/product-context/product-context-provider';
@@ -17,6 +17,7 @@ interface CustomModal {
 }
 
 export const ModalNotification = () => {
+  const theme = useTheme();
   const {marketState, toggleModal} =
     useContext<MarketContextType>(MarketContext);
   const {product, onDeleteProduct} =
@@ -37,24 +38,19 @@ export const ModalNotification = () => {
     if (type === 'warning') {
       content = {
         iconName: 'warning',
-        color: !marketState.isDarkTheme
-          ? MD3LightTheme.colors.tertiary
-          : MD3DarkTheme.colors.tertiary,
+        color: theme.colors.tertiary,
       };
     }
     if (type === 'delete') {
       content = {
         iconName: 'warning',
-        color: !marketState.isDarkTheme
-          ? MD3LightTheme.colors.tertiary
-          : MD3DarkTheme.colors.tertiary,
+        color: theme.colors.tertiary,
       };
     }
+
     return content;
   };
-  // useEffect(() => {
-  //   setIsVisible(visible);
-  // }, [visible]);
+
   return (
     <Portal>
       <Modal
@@ -63,9 +59,7 @@ export const ModalNotification = () => {
         onDismiss={toggleModal}
         contentContainerStyle={{
           padding: 20,
-          backgroundColor: !marketState.isDarkTheme
-            ? MD3LightTheme.colors.background
-            : MD3DarkTheme.colors.background,
+          backgroundColor: theme.colors.background,
           borderRadius: 20,
         }}
         style={{
@@ -107,7 +101,6 @@ export const ModalNotification = () => {
                   if (product.id) {
                     onDeleteProduct(product.id, user.accessTokken);
                   }
-                  toggleModal()
                 }}>
                 Yes
               </Button>

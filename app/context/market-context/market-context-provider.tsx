@@ -33,6 +33,11 @@ const MarketContextProvider = ({children}: {children: React.ReactNode}) => {
     setState(marketState => ({...marketState,modalVisibility: !visible}))
   }
 
+  const showErrorModal = (text: string) => {
+updateNotification({type: 'warning',  text})
+setState(marketState => ({...marketState, modalVisibility: true}))
+  }
+
   return (
     <MarketContext.Provider
       value={{
@@ -42,7 +47,8 @@ const MarketContextProvider = ({children}: {children: React.ReactNode}) => {
         updateUser,
         updateNotification,
         updateTheme,
-        toggleModal
+        toggleModal,
+        showErrorModal
       }}>
       {children}
     </MarketContext.Provider>

@@ -1,5 +1,5 @@
 import {View, StyleSheet} from 'react-native';
-import {MD3LightTheme, MD3DarkTheme} from 'react-native-paper';
+import {MD3LightTheme, MD3DarkTheme, useTheme} from 'react-native-paper';
 import {MarketContext} from '../context/market-context/market-context-provider';
 import {MarketContextType} from '../context/market-context/market-context-type';
 import {useContext} from 'react';
@@ -11,18 +11,19 @@ export const DotIndicator = ({
   index: number;
   counter: number;
 }) => {
+  const theme = useTheme()
   const {marketState} = useContext<MarketContextType>(MarketContext);
-  const checkTheme = () => {
-    if (!marketState.isDarkTheme) {
-      return MD3LightTheme.colors.primary;
-    } else return MD3DarkTheme.colors.primary;
-  };
+  // const checkTheme = () => {
+  //   if (!marketState.isDarkTheme) {
+  //     return MD3LightTheme.colors.primary;
+  //   } else return MD3DarkTheme.colors.primary;
+  // };
   return (
     <View
       style={[
         style.dot,
         {
-          backgroundColor: index === counter ? checkTheme() : 'grey',
+          backgroundColor: index === counter ? theme.colors.primary : 'grey',
           height: index === counter ? 14 : 10,
           width: index === counter ? 14 : 10,
         },

@@ -1,9 +1,12 @@
-import { DefaultProduct } from "../../models/default-values";
+import {DefaultProduct} from '../../models/default-values';
 
 export const DefaultProductContext = {
-    product: DefaultProduct,
-    onCreateProduct: () => {},
-    onUpdateProduct: () => {},
-    onDeleteProduct: () => {}
-
-}
+  product: DefaultProduct,
+  formProduct: DefaultProduct,
+  setFormProduct: ()=>{},
+  onCreateProduct: () => {},
+  onUpdateProduct: () => {},
+  onDeleteProduct: () => {},
+  onGetProduct: () => {},
+  resetProduct: () => {}
+};

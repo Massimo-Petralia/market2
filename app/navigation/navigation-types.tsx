@@ -1,9 +1,12 @@
-import {NavigatorScreenParams} from '@react-navigation/native';
+import {NavigatorScreenParams, RouteProp} from '@react-navigation/native';
 import Routes from './navigation-routes';
 
+// export type DetailStackParamsList ={
+//   [Routes.root.itemDetail]: {id: number | undefined};
+// }
 export type RootStackParamList = {
   [Routes.root.main]: NavigatorScreenParams<TabParamList>;
-  [Routes.root.itemDetail]: {id: number | null};
+  [Routes.root.itemDetail]: {id: number | undefined};
 };
 
 export type TabParamList = {
@@ -23,6 +26,8 @@ declare global {
     interface RootParamList extends RootStackParamList {}
   }
 }
+
+export type ProductRouteProp = RouteProp<RootStackParamList, 'Product detail'>;
 
 // Navigation example
 // navigation.navigate('Market2', { screen: 'User', params: { screen: 'Signin' } });

@@ -6,12 +6,15 @@ import {
   PaperProvider,
   MD3LightTheme as DefaultTheme,
   MD3DarkTheme,
+  useTheme,
 } from 'react-native-paper';
 import {ToggleButton} from 'react-native-paper';
 import changeNavigationBarColor from 'react-native-navigation-bar-color';
 import tinycolor2 from 'tinycolor2';
 export const ToggleLightDarkTheme = () => {
-  const {marketState, updateTheme} = useContext<MarketContextType>(MarketContext);
+  const theme = useTheme();
+  const {marketState, updateTheme} =
+    useContext<MarketContextType>(MarketContext);
   const setBottomNavColor = (color: string) => {
     changeNavigationBarColor(color, undefined, false);
   };
@@ -19,17 +22,13 @@ export const ToggleLightDarkTheme = () => {
     updateTheme(!marketState.isDarkTheme);
   };
 
-  const color: string = !marketState.isDarkTheme
-    ? tinycolor2('rgba(28, 27, 31, 1)').toHexString()
-    : tinycolor2('rgba(255, 251, 254, 1)').toHexString();
+  const color: string = tinycolor2(theme.colors.onBackground).toHexString();
 
   return (
     <View
       style={{
-        backgroundColor: !marketState.isDarkTheme
-          ? DefaultTheme.colors.background
-          : MD3DarkTheme.colors.background,
-          alignItems: 'flex-end'
+        backgroundColor: theme.colors.background,
+        alignItems: 'flex-end',
       }}>
       <ToggleButton
         style={{borderRadius: 50}}
@@ -53,11 +52,7 @@ export const PaperProviderWrapper = ({
   return (
     <>
       <StatusBar
-        backgroundColor={
-          !marketState.isDarkTheme
-            ? DefaultTheme.colors.background
-            : MD3DarkTheme.colors.background
-        }
+        backgroundColor={theme.colors.background}
         barStyle={!marketState.isDarkTheme ? 'dark-content' : 'light-content'}
       />
       <PaperProvider theme={theme}>{children}</PaperProvider>
