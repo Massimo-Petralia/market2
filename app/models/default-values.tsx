@@ -14,6 +14,7 @@ export const DefaultProduct: Product = {
   name: '',
   description: '',
   price: '',
+  currency: '€',
   images: [],
   userId: null,
 };

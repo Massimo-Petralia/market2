@@ -1,7 +1,7 @@
 import React, {useContext, useEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
-import {Text, TextInput} from 'react-native-paper';
-import {Product} from '../../models/market-models';
+import {Text, TextInput, RadioButton} from 'react-native-paper';
+import {Currency, Product} from '../../models/market-models';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import {ImagesPreview} from '../../components/images-preview';
 import {MD3LightTheme, MD3DarkTheme} from 'react-native-paper';
@@ -11,7 +11,7 @@ import {FormControlSave} from '../../components/form-controls/form-control-save'
 import {UserContext} from '../../context/user-context/user-context-provider';
 import {UserContextType} from '../../context/user-context/user-context-types';
 import {FormControlDelete} from '../../components/form-controls/form-control-delete';
-import { FormControlAddToCart } from '../../components/form-controls/form-control-add-to-cart';
+import {FormControlAddToCart} from '../../components/form-controls/form-control-add-to-cart';
 export const ProductView = ({
   product,
   setFormProduct,
@@ -33,6 +33,9 @@ export const ProductView = ({
     updateFormProduct('price', price);
   const handleImagesChanges = (images: string[]) => {
     updateFormProduct('images', images);
+  };
+  const handleCurrencyChanges = (currency: string) => {
+    updateFormProduct('currency', currency);
   };
   useEffect(() => {
     setFormProduct(product);
@@ -76,12 +79,46 @@ export const ProductView = ({
           onChangeText={description => handleDescriptionChanges(description)}
           style={style.input}
         />
-        <TextInput
-          label="Price"
-          value={product.price}
-          onChangeText={price => handlePriceChanges(price)}
-          style={style.input}
-        />
+
+        <View
+          style={{
+            flexDirection: 'row',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+          }}>
+          <TextInput
+            label="Price"
+            value={product.price}
+            onChangeText={price => handlePriceChanges(price)}
+            style={[style.input, {width: '50%'}]}
+          />
+          <RadioButton.Group
+            onValueChange={newCurrency => {
+              handleCurrencyChanges(newCurrency);
+            }}
+            value={product.currency}>
+            <View style={{flexDirection: 'row', marginRight: 30}}>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginHorizontal: 5,
+                }}>
+                <Text style={{fontSize: 20}}>€</Text>
+                <RadioButton value="€" />
+              </View>
+              <View
+                style={{
+                  flexDirection: 'row',
+                  alignItems: 'center',
+                  marginHorizontal: 5,
+                }}>
+                <Text style={{fontSize: 20}}>$</Text>
+                <RadioButton value="$" />
+              </View>
+            </View>
+          </RadioButton.Group>
+        </View>
       </View>
       <ImagesPreview
         handleImagesChanges={handleImagesChanges}
@@ -91,7 +128,7 @@ export const ProductView = ({
         product={{...product, userId: user.id}}
         accessToken={user.accessTokken}
       />
-      <FormControlAddToCart  product={product}/>
+      <FormControlAddToCart product={product} />
     </View>
   );
 };

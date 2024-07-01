@@ -34,9 +34,11 @@ export type Product = {
   name: string;
   description: string;
   price: string;
+  currency: "€" | "$"
   images: string[];
   userId?: number | null;
 };
+export type Currency = "€" | "$"
 
 export interface MarketState {
   products: Product[];
