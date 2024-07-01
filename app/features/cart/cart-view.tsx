@@ -1,12 +1,28 @@
 import {Pressable, View, Image, ScrollView} from 'react-native';
 import {Product, User} from '../../models/market-models';
-import {Card, Divider, Text} from 'react-native-paper';
+import {Card, Divider, Text, useTheme, Button} from 'react-native-paper';
 
-export const CartView = ({_cart, user}: {_cart: Product[]; user: User}) => {
+export const CartView = ({_cart, user, total}: {_cart: Product[]; user: User, total: number}) => {
   const cart: Product[] = _cart;
+  const theme = useTheme()
 
   return (
     <ScrollView>
+      <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', marginVertical: 5}}>
+      <View style={{ padding: 5, borderWidth: 1, borderColor: theme.colors.onBackground, borderRadius: 6}}>
+        <Text>Subtotal price {total}€</Text>
+        <Divider/>
+        <Text>Shipping price 5€</Text>
+        <Divider/>
+        
+        <Text variant='labelLarge'>Total: {total +5}€</Text>
+        
+      </View>
+    <Button mode='contained'>
+     Buy
+    </Button>
+      </View>
+  
       {user.id && cart.length !== 0 ? (
         cart.map((product, index) => (
           <Pressable key={index}>
