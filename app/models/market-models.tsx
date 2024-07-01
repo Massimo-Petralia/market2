@@ -5,7 +5,7 @@ export interface User {
   email: string;
   password: string;
   cart: Product[];
-  address?: Address;
+  address: Address;
 }
 
 export interface Address {

@@ -1,6 +1,6 @@
 import React, {createContext, useContext, useState} from 'react';
 import {Address, Product, User, UserDataResponse} from '../../models/market-models';
-import {DefaultUser} from '../../models/default-values';
+import {DefaultAddress, DefaultUser} from '../../models/default-values';
 import {UserContextType} from './user-context-types';
 import {DefaultUserContext} from './default-values';
 import {UserServices} from '../../services/user-services';
@@ -15,6 +15,7 @@ const UserContextProvider = ({children}: {children: React.ReactNode}) => {
   const userServices = new UserServices();
   const cartServices = new CartServices();
   const [user, setUser] = useState<User>(DefaultUser);
+  const [userAddress, setUserAddress] = useState<Address>(DefaultAddress)
 
   const onSignup = (user: User) => {
     userServices
@@ -51,8 +52,10 @@ const UserContextProvider = ({children}: {children: React.ReactNode}) => {
             email: user.email,
             password: user.password,
             cart: user.cart,
+            address: user.address
           };
           setUser(userData);
+          setUserAddress(userData.address)
         }
       })
       .catch(error => console.error('signin post request failed: ', error));
@@ -73,9 +76,20 @@ const UserContextProvider = ({children}: {children: React.ReactNode}) => {
       .catch(error => console.log('patch request failed: ', error));
   };
 
+ const onAddAddress = (address:Address, id: number)=> {
+  userServices.addAddress(address, id, user.accessTokken).then(
+    async response => {
+      const data = await response.json()
+      console.log('response: ', data)
+      setUser(prevState => ({...prevState, address: data.address}))
+      setUserAddress(data.address)
+    }
+  )
+ }
+
   
   return (
-    <UserContext.Provider value={{user, onSignup, onSignin, addToUserCart, setUser}}>
+    <UserContext.Provider value={{user,userAddress,setUser, onSignup, onSignin, addToUserCart, setUserAddress, onAddAddress}}>
       {children}
     </UserContext.Provider>
   );
