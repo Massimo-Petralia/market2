@@ -5,6 +5,23 @@ export interface User {
   email: string;
   password: string;
   cart: Product[];
+  address?: Address;
+}
+
+export interface Address {
+  id?: number;
+  address: string;
+  city: string;
+  state: string;
+  country: string;
+  zipcode: string;
+}
+
+export interface Order {
+  id?: number;
+  userId: number;
+  cart: Product[];
+  address: Address;
 }
 
 export type UserDataResponse = {
@@ -17,9 +34,11 @@ export type Product = {
   name: string;
   description: string;
   price: string;
+  currency: "€" | "$"
   images: string[];
   userId?: number | null;
 };
+export type Currency = "€" | "$"
 
 export interface MarketState {
   products: Product[];
@@ -28,6 +47,7 @@ export interface MarketState {
   modalVisibility: boolean;
   notification: Notification;
   isDarkTheme: boolean;
+  cart: Product[]
 }
 
 export type NotificationTypes = 'info' | 'warning' | 'delete';
