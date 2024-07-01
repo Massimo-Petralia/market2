@@ -5,4 +5,5 @@ export const DefaultUserContext = {
   onSignup: () => {},
   onSignin: () => {},
   addToUserCart: () => {},
-};
+  setUser: () => {}
+}

@@ -1,5 +1,5 @@
 import {User} from '../../models/market-models';
-import {Product} from '../../models/market-models';
+import {Product, Address} from '../../models/market-models';
 
 export type UserContextType = {
   user: User;
@@ -11,4 +11,5 @@ export type UserContextType = {
     id: number,
     accessToken: string,
   ) => void;
+  setUser: React.Dispatch<React.SetStateAction<User>>
 };

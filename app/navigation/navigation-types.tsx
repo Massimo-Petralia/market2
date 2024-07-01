@@ -19,6 +19,7 @@ export type TabParamList = {
 export type UserStackParamList = {
   [Routes.root.tab.user.signin]: undefined;
   [Routes.root.tab.user.signup]: undefined;
+  [Routes.root.tab.user.address]: undefined
 };
 
 declare global {

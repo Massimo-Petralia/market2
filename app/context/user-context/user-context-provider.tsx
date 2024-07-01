@@ -1,5 +1,5 @@
 import React, {createContext, useContext, useState} from 'react';
-import {Product, User, UserDataResponse} from '../../models/market-models';
+import {Address, Product, User, UserDataResponse} from '../../models/market-models';
 import {DefaultUser} from '../../models/default-values';
 import {UserContextType} from './user-context-types';
 import {DefaultUserContext} from './default-values';
@@ -73,8 +73,9 @@ const UserContextProvider = ({children}: {children: React.ReactNode}) => {
       .catch(error => console.log('patch request failed: ', error));
   };
 
+  
   return (
-    <UserContext.Provider value={{user, onSignup, onSignin, addToUserCart}}>
+    <UserContext.Provider value={{user, onSignup, onSignin, addToUserCart, setUser}}>
       {children}
     </UserContext.Provider>
   );

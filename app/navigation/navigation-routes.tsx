@@ -8,6 +8,7 @@ const Routes = {
             index : 'User',
             signin: 'Signin',
             signup: 'Signup',
+            address: 'Address'
         },
         Add: 'Sell',
         cart: 'Cart',

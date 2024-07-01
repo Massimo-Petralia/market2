@@ -1,7 +1,8 @@
-import {User} from '../models/market-models';
+import {Address, User} from '../models/market-models';
 
 const usersURL = 'http://192.168.1.102:3000/users';
 const signinURL = 'http://192.168.1.102:3000/signin';
+const usersURLGuard = 'http://192.168.1.102:3000/644/users' 
 
 export class UserServices {
   createUser = (user: User) => {
@@ -30,4 +31,17 @@ export class UserServices {
       body: JSON.stringify(signinData),
     });
   };
+
+addAddress = (address: Address, id: number, accessToken: string)=> {
+  return fetch(`${usersURLGuard}/${id}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json',
+      Accept: 'application/json',
+      Authorization: `Bearer ${accessToken}`,
+    },
+    body: JSON.stringify({address: address})
+  })
+}
+
 }
