@@ -9,7 +9,7 @@ export const CartView = ({_cart, user, total}: {_cart: Product[]; user: User, to
   return (
     <ScrollView>
       <View style={{ flexDirection: 'row', justifyContent: 'space-evenly', alignItems: 'center', marginVertical: 5}}>
-      <View style={{ padding: 5, borderWidth: 1, borderColor: theme.colors.onBackground, borderRadius: 6}}>
+      <View style={{ padding: 10, borderWidth: 1, borderColor: theme.colors.onBackground, borderRadius: 6}}>
         <Text>Subtotal price {total}€</Text>
         <Divider/>
         <Text>Shipping price 5€</Text>
